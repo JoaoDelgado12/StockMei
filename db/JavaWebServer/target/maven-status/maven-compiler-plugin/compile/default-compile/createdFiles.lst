@@ -1,2 +1,4 @@
-delga\javawebserver\JakartaRestConfiguration.class
 delga\javawebserver\resources\JakartaEE11Resource.class
+connection\ConnectionFactory.class
+delga\javawebserver\JakartaRestConfiguration.class
+login\Login.class

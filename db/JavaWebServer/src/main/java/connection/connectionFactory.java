@@ -1,12 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package connectio;
+package connection;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.DriverManager;
+//https://codeshare.io/GqYRBA
 /**
  *
- * @author EJADEN0058
+ * @author Master
  */
 public class ConnectionFactory {
 
@@ -22,8 +22,8 @@ public class ConnectionFactory {
             Connection con = null;
             
             try {
-                class.forName(DRIVER);
-                con = DriverManeger.getconnection(URL, USER, PASSWORD);
+                Class.forName(DRIVER);
+                con = DriverManager.getConnection(URL, USER, PASSWORD);
                 System.out.println("Banco de dados conectado.");
             } catch (Exception e) {
                 System.out.println("Banco de dados não conectado");
