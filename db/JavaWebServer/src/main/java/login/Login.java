@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author EJADEN0058
+ * @author Master
  */
 @WebServlet("/login")
 public class Login extends HttpServlet{
@@ -24,7 +24,7 @@ public class Login extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String usuario = request.getParameter("users");
+        String usuario = request.getParameter("user");
         String senha = request.getParameter("passw");
         
         response.setContentType("text/html");
@@ -38,7 +38,6 @@ public class Login extends HttpServlet{
             stmt.setString(2, senha);
             
             ResultSet rs = stmt.executeQuery();
-            
             if(rs.next()){
                 response.sendRedirect("dashboard.html");
             }else {

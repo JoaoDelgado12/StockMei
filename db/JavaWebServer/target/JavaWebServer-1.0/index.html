@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel = "stylesheet" type="text/css" href="css/reset.css">
+    <link rel = "stylesheet" type="text/css" href="css/color.css">
     <link rel = "stylesheet" type="text/css" href="css/style.css">
     <title>Login</title>
 </head>
@@ -14,20 +17,25 @@
 
 
     <main> 
-          <form> 
-            <div class = "content">
-                <div>
-                    <div>
-                        <label> Login: </label>
+        <form action = "login" method="post"> 
+            <div class = "container">
+                <h1>Estoque de Negocio </h1>
+                <div id = "login">
+                  <div>
+                        <label> Usuário </label>
+                        <div>
                         <input type = "text" name="user" class = "userInput"> 
-                    </div>
-                    <div>
+                        </div>
+                </div>
+                <div>
                         <label> Senha: </label>
+                        <div>
                         <input type = "password" name="passw" class = "userInput" >
-                    </div>
-                    
+                        </div>
+                </div>
+                <div>
                     <button> Enviar </button>
-                    <button> Limpar </button>
+                </div>
                 </div>
             </div>
           </form>
