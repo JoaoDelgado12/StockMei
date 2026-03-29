@@ -3,6 +3,9 @@
     --primary-corfundolight: #4EB0E6;
     --primary-corfundodark: #194B77;
     --primary-light: #bbe1fa;
+    
+    /* Barras */
+    --fundo-pesquisa: #6166FF;
 
     /* Cor de ação (botões / confirmação) */
     --success: #1b9c85;

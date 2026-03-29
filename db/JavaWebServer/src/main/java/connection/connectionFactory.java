@@ -17,17 +17,15 @@ public class ConnectionFactory {
         private static final String PASSWORD = "Marinalva12@12@12@";
     //Métodos
         
-        public static Connection getConnection(){
+        public static Connection getConnection() throws ClassNotFoundException, SQLException{
             Connection con = null;
             
             try {
                 Class.forName(DRIVER);
-                System.out.println("Banco de dados conectado.");
                 con = DriverManager.getConnection(URL, USER, PASSWORD);
                 
-            } catch (Exception e) {
-                System.out.println("Banco de dados não conectado");
-                e.printStackTrace();
+            } catch (NullPointerException e) {
+                System.err.println("SQLException: Não foi conectado ao banco.");
             }
             
             return con;

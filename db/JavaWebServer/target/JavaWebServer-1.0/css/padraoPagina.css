@@ -11,21 +11,22 @@ body main{
 }
 
 header{
-    background-color: var(--primary-corfundolight);
+    background: linear-gradient(90deg, var(--primary-corfundolight), var(--primary-corfundodark) );
     height: 50px;
     width: 100vw;
     display: block; /*trava na posição colocada*/
     position: fixed; /* fixa na hora da rolagem da página, mesmo com a rolagem permanece no mesmo lugar da visualização*/ 
+    
 }
 
 footer{
-    background-color: var(--primary-corfundolight);
+    background: linear-gradient(90deg, var(--primary-corfundolight), var(--primary-corfundodark) );
     height: 50px;
     width: 100vw;
     position: absolute; /* fica no final de TODA página*/
     bottom: 0; /* define a posição relativo a div pai */
 }
 
-button{
+button:hover{
     cursor: pointer;
 }

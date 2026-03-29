@@ -9,6 +9,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 15px;
 }
 
 .container{
@@ -18,8 +19,7 @@ body{
     display: flex; /* para habilitar a alteração de disposição*/
     flex-direction: column; /* como será empilhado os conteudos*/
     justify-content: flex-end; /* joga o conteudo para baixo no container*/
-    margin: 15px;
-    box-shadow: 4px 5px 15px var(--gray-dark); 
+    box-shadow: 0 4px 6px var(--shadow-default);
     border-radius: 10px;
 }
 
