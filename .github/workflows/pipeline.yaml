@@ -1,0 +1,32 @@
+name: CI/CD - contruir
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  build:
+    name: contruir projeto
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout do repositório   
+        uses: actions/checkout@v4
+  
+      - name: Configuração Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Build da aplicação
+        run: mvn clean package -DskipTests
+        
+      - name: Salvar artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-war
+          path: target/*.war
+          retention-days: 2

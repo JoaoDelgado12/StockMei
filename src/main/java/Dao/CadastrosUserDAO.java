@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Dao;
 
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
+import model.CadastroUsuarioModel;
 
 /**
  *
@@ -13,10 +10,10 @@ import java.sql.PreparedStatement;
  */
 public class CadastrosUserDAO {
     public boolean cadastrar(CadastroUsuarioModel user){
-        String sql = "INSERT INTO users " +
-                "(nome, sobrenome, matricula, cpf, sexo, dtaNascimento, email, telefone, funcao,"
-                + "cep) "
-                + "VALUE (?,?,?,?,?,?,?,?)"; 
+        String sql = "INSERT INTO users" + 
+            "(username, pass, nome, sobrenome, matricula, cpf, sexo, email,"
+                + " telefone, DtaNascimento, funcao, cep, endereco, numero, bairro, cidade, estado, complemento)" + 
+            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)";
         try(var con = ConnectionFactory.getConnection()){
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, user.getNome());
@@ -28,7 +25,17 @@ public class CadastrosUserDAO {
             stmt.setString(7, user.getEmail());
             stmt.setLong(8, user.getTelefone());
             stmt.setString(9, user.getFuncao());
-            stmt.setLong(9, user.getCep());
+            stmt.setLong(10, user.getCep());
+            stmt.setString(11, user.getEndereco());
+            stmt.setString(11, user.getNumero());
+            stmt.setString(7, user.getBairro());
+            stmt.setString(8, user.getCidade());
+            stmt.setString(9, user.getEstado());
+            stmt.setString(10, user.getComplemento());
+            stmt.setString(12, user.getUsuario());
+            stmt.setString(13, user.getSenha());
+            
+            
             
             stmt.executeUpdate();
             
