@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controller;
 
 import Dao.UserDAO;
@@ -36,9 +32,9 @@ public class LoginServelet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("usuario", usuario);
             
-            response.sendRedirect("pages/menu.html");
+            response.sendRedirect(request.getContextPath() + "/pages/menu.html");
         } else{
-            response.sendRedirect("index.html");
+            response.sendRedirect(request.getContextPath() + "/index.html");
         }
         
     }
