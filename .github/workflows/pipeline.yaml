@@ -32,7 +32,7 @@ jobs:
 
       - name: executar o mysql
         run: |
-          mysql -h 127.0.0.1 -u root -p"${{ secrets.MYSQL_ROOT_PASSWORD}}"  < db/init.sql
+          mysql -h 127.0.0.1 -u root -p"${{ secrets.MYSQL_ROOT_PASSWORD }}"  < db/init.sql
       
       - name: Salvar artefato
         uses: actions/upload-artifact@v4

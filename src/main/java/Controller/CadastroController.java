@@ -21,21 +21,22 @@ public class CadastroController extends HttpServlet {
         request.getParameter("nameFirst"),
         request.getParameter("sobrenome"),
         request.getParameter("matricula"),
-        request.getParameter("cpf"),
-        request.getParameter("sexo"),
         request.getParameter("dtaNascimento"),
-        request.getParameter("telefone"),
-        request.getParameter("email"),
-        request.getParameter("funcao"),
-        request.getParameter("usuario"),
-        request.getParameter("senha"),
+        request.getParameter("sexo"),
+        request.getParameter("cpf"),
         request.getParameter("cep"),
         request.getParameter("endereco"),
-        request.getParameter("numero"),
+        request.getParameter("estado"),
         request.getParameter("bairro"),
         request.getParameter("cidade"),
-        request.getParameter("estado"),
-        request.getParameter("complemento"));
+        request.getParameter("numero"),
+        request.getParameter("complemento"),
+        request.getParameter("usuario"),
+        request.getParameter("senha"),
+        request.getParameter("funcao"),
+        request.getParameter("email"),
+        request.getParameter("telefone")
+        );
         
         
         CadastrosUserDAO dao = new CadastrosUserDAO();

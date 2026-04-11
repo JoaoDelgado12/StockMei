@@ -6,15 +6,15 @@ services:
     container_name: mysql-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Marinalva12@12@12@
-      MYSQL_DATABASE: estoque_db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports: 
-      - "3306:3306"
+      - "${DB_PORT_EXTERNAL}:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      teste: ["CMD","mysqladmin","ping","-h","root","pMarinalva12@12@12@"]
+      test: ["CMD","mysqladmin","ping","-h","localhost", "-u","p${MYSQL_ROOT_PASSWORD}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -27,7 +27,12 @@ services:
     ports: 
       - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    environment:
+      - DB_URL=jdbc:mysql://${DB_HOST}:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - DB_USER=${DB_USER}
+      - DB_PASS=${MYSQL_ROOT_PASSWORD}
       
 volumes:
   db_data:

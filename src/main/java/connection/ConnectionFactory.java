@@ -9,23 +9,21 @@ import java.sql.DriverManager;
  * @author Master
  */
 public class ConnectionFactory {
-//dnlawnldwa
-    //Dados da conexão
         private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-        private static final String URL = "jdbc:mysql://db:3306/estoque_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-        private static final String USER = "root";
-        private static final String PASSWORD = "Marinalva12@12@12@";
+        private static final String URL = System.getenv("DB_URL");
+        private static final String USER = System.getenv("DB_USER");
+        private static final String PASSWORD = System.getenv("DB_PASS");
     //Métodos
         
         public static Connection getConnection() throws ClassNotFoundException, SQLException{
             Connection con = null;
-            
+
             try {
                 Class.forName(DRIVER);
                 con = DriverManager.getConnection(URL, USER, PASSWORD);
                 
-            } catch (NullPointerException e) {
-                System.err.println("SQLException: Não foi conectado ao banco.");
+            }catch (Exception e){
+                System.err.println("SQLException: Não foi conectado o banco.");
             }
             
             return con;
