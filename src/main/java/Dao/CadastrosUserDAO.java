@@ -12,8 +12,8 @@ import Model.CadastroUsuarioModel;
 public class CadastrosUserDAO {
     public boolean cadastrar(CadastroUsuarioModel user){
         String sql = "INSERT INTO cadastro_usuario" + 
-            "(nome, sobrenome, matricula, dta_nascimento, sexo, cpf, cep, endereco, estado, bairro "
-                + " cidade, numero, complemento, usuario, senha, funcao,email,telefone)" + 
+            "(nome, sobrenome, matricula, dta_nascimento, sexo, cpf, cep, endereco, estado, bairro, "
+                + " cidade, numero, complemento, usuario, senha, funcao, email, telefone)" + 
             "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         try(var con = ConnectionFactory.getConnection()){
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -25,7 +25,7 @@ public class CadastrosUserDAO {
             stmt.setString(6, user.cpf());
             stmt.setString(5, user.sexo());
             stmt.setString(17, user.email());
-            stmt.setString(19, user.telefone());
+            stmt.setString(18, user.telefone());
             stmt.setString(4, user.DtaNascimento());
             stmt.setString(16, user.funcao());
             stmt.setString(7, user.cep());
