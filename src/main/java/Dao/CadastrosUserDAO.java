@@ -3,6 +3,7 @@ package Dao;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
 import Model.CadastroUsuarioModel;
+import util.SenhaHash;
 
 /**
  *
@@ -17,8 +18,12 @@ public class CadastrosUserDAO {
             "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         try(var con = ConnectionFactory.getConnection()){
             PreparedStatement stmt = con.prepareStatement(sql);
+            
+            String senhaHash = SenhaHash.gerarHash(user.senha());
+                    
+                    
             stmt.setString(14, user.usuario());
-            stmt.setString(15, user.senha());
+            stmt.setString(15, senhaHash);
             stmt.setString(1, user.nome());
             stmt.setString(2, user.sobrenome());
             stmt.setString(3, user.matricula());

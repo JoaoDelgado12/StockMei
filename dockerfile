@@ -28,7 +28,7 @@ COPY  src/main/webapp/WEB-INF/lib/mysql-connector-j-8.1.0.jar /usr/local/tomcat/
 #copia de Build o que está no primeiro diretorio com o .war e cola no segundo diretorio com o nome root.war
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-#expoe a porta 8080, seria legar já desviar para minha porta
+#expoe a porta 8080, seria legal já desviar para minha porta
 EXPOSE 8080
 
 #Executa o catalina

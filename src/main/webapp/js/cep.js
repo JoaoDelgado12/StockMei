@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
+
 const campoCep = document.getElementById("cep");
 
 campoCep.addEventListener("blur", buscarCEP);
@@ -23,6 +24,7 @@ async function buscarCEP(){
         return;
     }
     campoCep.style.botderColor = '#aaa';
+	
     preencherCampos({aguardando: true});
     
     try{
@@ -81,7 +83,7 @@ function limparCampoEndereco(){
 document.addEventListener("DOMContentLoaded", function(){
     const campoCep = document.getElementById("cep");
     campoCep.addEventListener("input", function(){
-        let valor = this.value.replace(/\D/q,"");
+        let valor = this.value.replace(/\D/g,"");
         if(valor.length>5){
             valor = valor.substring(0, 5) + "-" +  valor.substring(5,8);
         }

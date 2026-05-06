@@ -1,63 +1,54 @@
--- MySQL Workbench Forward Engineering
+CREATE SCHEMA IF NOT EXISTS estoque_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE estoque_db ;
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+CREATE TABLE funcao_perfilUsuario(
+  id int AUTO_INCREMENT PRIMARY KEY,
+  funcao VARCHAR(100)
+);
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema estoque_db
--- -----------------------------------------------------
+CREATE TABLE grupoPermissao_perfilUsuario(
+  id int AUTO_INCREMENT PRIMARY KEY,
+  grupoPermissao VARCHAR(100)
+);
 
--- -----------------------------------------------------
--- Schema estoque_db
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `estoque_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `estoque_db` ;
+CREATE TABLE perfilUsuario(
+  id int AUTO_INCREMENT PRIMARY KEY,
+  usuario VARCHAR(100), 
+  senha VARCHAR(100),
+  funcao int,
+  CONSTRAINT fk_funcao FOREIGN KEY (funcao) REFERENCES funcao_perfilUsuario(id) on update cascade,
+  grupoPermissao int,
+  CONSTRAINT fk_grupoPermissao FOREIGN KEY (grupoPermissao) REFERENCES grupoPermissao_perfilUsuario(id) on update cascade,
+  natureza enum('CLIENTE', 'COLABORADOR')
+);
 
--- -----------------------------------------------------
--- Table `estoque_db`.`cadastro_usuario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque_db`.`cadastro_usuario` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
-  `sobrenome` VARCHAR(100) NULL DEFAULT NULL,
-  `matricula` VARCHAR(5) NOT NULL,
-  `dta_nascimento` DATE NOT NULL,
-  `sexo` VARCHAR(10) NULL DEFAULT NULL,
-  `cpf` VARCHAR(20) NOT NULL,
-  `cep` VARCHAR(20) NULL DEFAULT NULL,
-  `endereco` VARCHAR(150) NULL DEFAULT NULL,
-  `estado` VARCHAR(50) NULL DEFAULT NULL,
-  `bairro` VARCHAR(100) NULL DEFAULT NULL,
-  `cidade` VARCHAR(100) NULL DEFAULT NULL,
-  `numero` VARCHAR(20) NULL DEFAULT NULL,
-  `complemento` VARCHAR(100) NULL DEFAULT NULL,
-  `usuario` VARCHAR(50) NOT NULL,
-  `senha` VARCHAR(100) NOT NULL,
-  `funcao` VARCHAR(50) NULL DEFAULT NULL,
-  `email` VARCHAR(100) NULL DEFAULT NULL,
-  `telefone` VARCHAR(20) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+CREATE TABLE estado(
+  estado VARCHAR(15) PRIMARY KEY
+);
 
+CREATE TABLE cidade(
+  cidade VARCHAR(11) PRIMARY KEY
+);
+CREATE TABLE cepUsuario(
+  id int AUTO_INCREMENT PRIMARY KEY,
+  cep VARCHAR(11),
+  estado VARCHAR(15),
+  CONSTRAINT fk_estado FOREIGN KEY (estado) REFERENCES estado(estado) on update cascade,
+  cidade VARCHAR(11),
+  CONSTRAINT fk_cidade FOREIGN KEY (cidade) REFERENCES cidade(cidade) on update cascade,
+  endereco VARCHAR(50)
+);
 
--- -----------------------------------------------------
--- Table `estoque_db`.`dta_nasc`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque_db`.`dta_nasc` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `data` DATE NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+CREATE TABLE dadosUsuario(
+  id int PRIMARY KEY,
+  nome VARCHAR(100), 
+  sobrenome VARCHAR(100),
+  dtaNascimento VARCHAR(8),
+  sexo enum('masculino','feminino', 'trans', 'outros'),
+  cpf VARCHAR(11),
+  cep int,
+  CONSTRAINT fk_cep FOREIGN KEY (cep) REFERENCES cepUsuario(id) on update cascade,
+  email VARCHAR(120),
+  telefone VARCHAR(11)
+);
 
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

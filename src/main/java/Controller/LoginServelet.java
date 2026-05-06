@@ -24,11 +24,11 @@ public class LoginServelet extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String senha = request.getParameter("senha");
        
-        UserModel userModel = new UserModel(usuario,senha);
+        UserModel usermodel = new UserModel(usuario, senha);
         
         UserDAO DAO = new UserDAO();
         
-        if(DAO.validarLogin(userModel)){
+        if(DAO.validarLogin(usermodel)){
             HttpSession session = request.getSession();
             session.setAttribute("usuario", usuario);
             

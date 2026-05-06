@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 
-/**
- *
- * @author Master
- */
+
 public class ConnectionFactory {
         private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
         private static final String URL = System.getenv("DB_URL");
