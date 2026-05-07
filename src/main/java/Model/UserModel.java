@@ -7,6 +7,7 @@ package Model;
 public class UserModel{
 	private String usuario;
 	private String senha;
+	private String permissao;
 	
 	public UserModel(){}
 	
@@ -26,6 +27,14 @@ public class UserModel{
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getPermissao() {
+		return permissao;
+	}
+
+	public void setPermissao(String permissao) {
+		this.permissao = permissao;
 	}
  
 	

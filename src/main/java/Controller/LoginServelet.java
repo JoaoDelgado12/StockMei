@@ -18,7 +18,9 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServelet extends HttpServlet {
     
-    protected void doPost(HttpServletRequest request, 
+    private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, 
             HttpServletResponse response) 
             throws ServletException, IOException {
         String usuario = request.getParameter("usuario");
@@ -26,11 +28,12 @@ public class LoginServelet extends HttpServlet {
        
         UserModel usermodel = new UserModel(usuario, senha);
         
-        UserDAO DAO = new UserDAO();
+        UserDAO userdao = new UserDAO();
         
-        if(DAO.validarLogin(usermodel)){
+        if(userdao.validarLogin(usermodel) != null){
             HttpSession session = request.getSession();
-            session.setAttribute("usuario", usuario);
+            session.setAttribute("usuario", usermodel.getUsuario());
+            session.setAttribute("grupoPermissao", usermodel.getPermissao());
             
             response.sendRedirect(request.getContextPath() + "/pages/menu.html");
         } else{
