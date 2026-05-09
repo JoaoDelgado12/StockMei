@@ -10,7 +10,7 @@ public class CadastroUsuarioModel {
     private String sexo;
     private String cpf;
     private String cep;
-    private String endereco;
+    private String logradouro;
     private String estado;
     private String bairro;
     private String cidade;
@@ -21,33 +21,34 @@ public class CadastroUsuarioModel {
     private String funcao;
     private String email;
     private String telefone;
-    private int id;
+    private String grupoAcesso;
 
-    // Construtor completo
-    public CadastroUsuarioModel(String nome, String sobrenome, String matricula, String DtaNascimento, String sexo, String cpf,
-                                 String cep, String endereco, String estado, String bairro, String cidade, String numero,
-                                 String complemento, String usuario, String senha, String funcao, String email,
-                                 String telefone) {
-
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.matricula = matricula;
-        this.DtaNascimento = DtaNascimento;
-        this.sexo = sexo;
-        this.cpf = cpf;
-        this.cep = cep;
-        this.endereco = endereco;
-        this.estado = estado;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.funcao = funcao;
-        this.email = email;
-        this.telefone = telefone;
-    }
+    
+	    public CadastroUsuarioModel(String nome, String sobrenome, String matricula, String DtaNascimento, 
+	            String sexo, String cpf, String cep, String logradouro, 
+	            String estado, String bairro, String cidade, String numero, 
+	            String complemento, String usuario, String senha, String funcao, 
+	            String email, String telefone, String grupoAcesso) {
+			this.nome = nome;
+			this.sobrenome = sobrenome;
+			this.matricula = matricula;
+			this.DtaNascimento = DtaNascimento;
+			this.sexo = sexo;
+			this.cpf = cpf;
+			this.cep = cep;
+			this.logradouro = logradouro;
+			this.estado = estado;
+			this.bairro = bairro;
+			this.cidade = cidade;
+			this.numero = numero;
+			this.complemento = complemento;
+			this.usuario = usuario;
+			this.senha = senha;
+			this.funcao = funcao;
+			this.email = email;
+			this.telefone = telefone;
+			this.grupoAcesso = grupoAcesso;
+			}
 
 
     public String getNome() { return nome; }
@@ -71,8 +72,8 @@ public class CadastroUsuarioModel {
     public String getCep() { return cep; }
     public void setCep(String cep) { this.cep = cep; }
 
-    public String getEndereco() { return endereco; }
-    public void setEndereco(String endereco) { this.endereco = endereco; }
+    public String getLogradouro() { return logradouro; }
+    public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
 
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
@@ -104,8 +105,9 @@ public class CadastroUsuarioModel {
     public String getTelefone() { return telefone; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+	public String getGrupoAcesso() {return grupoAcesso;}
+	public void setGrupoAcesso(String grupoAcesso) { this.grupoAcesso = grupoAcesso; }
+
 }
 
 

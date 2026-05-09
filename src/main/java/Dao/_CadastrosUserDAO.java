@@ -10,7 +10,7 @@ import util.SenhaHash;
  * @author Master
  */
 
-public class CadastrosUserDAO2 {
+public class _CadastrosUserDAO {
     public boolean cadastrar(CadastroUsuarioModel user){
         String sql = "INSERT INTO cadastro_usuario" + 
             "(nome, sobrenome, matricula, dta_nascimento, sexo, cpf, cep, endereco, estado, bairro, "
@@ -34,7 +34,7 @@ public class CadastrosUserDAO2 {
             stmt.setString(4, user.getDtaNascimento());
             stmt.setString(16, user.getFuncao());
             stmt.setString(7, user.getCep());
-            stmt.setString(8, user.getEndereco());
+            stmt.setString(8, user.getLogradouro());
             stmt.setString(12, user.getNumero());
             stmt.setString(10, user.getBairro());
             stmt.setString(11, user.getCidade());

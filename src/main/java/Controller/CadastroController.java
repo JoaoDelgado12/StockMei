@@ -1,7 +1,7 @@
 
 package Controller;
 
-import Dao.CadastrosUserDAO;
+import Dao._CadastrosUserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +15,9 @@ import Model.CadastroUsuarioModel;
  */
 @WebServlet("/cadastro")
 public class CadastroController extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
         CadastroUsuarioModel cadastroUser = new CadastroUsuarioModel(
         request.getParameter("nameFirst"),
@@ -25,7 +27,7 @@ public class CadastroController extends HttpServlet {
         request.getParameter("sexo"),
         request.getParameter("cpf"),
         request.getParameter("cep"),
-        request.getParameter("endereco"),
+        request.getParameter("logradouro"),
         request.getParameter("estado"),
         request.getParameter("bairro"),
         request.getParameter("cidade"),
@@ -35,11 +37,12 @@ public class CadastroController extends HttpServlet {
         request.getParameter("senha"),
         request.getParameter("funcao"),
         request.getParameter("email"),
-        request.getParameter("telefone")
+        request.getParameter("telefone"),
+        request.getParameter("grupoAcesso")
         );
         
       
-        CadastrosUserDAO cadastroDao = new CadastrosUserDAO();
+        _CadastrosUserDAO cadastroDao = new _CadastrosUserDAO();
         
         if(cadastroDao.cadastrar(cadastroUser)){
             response.sendRedirect(request.getContextPath() + "/pages/menu.html");

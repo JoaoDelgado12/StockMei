@@ -19,7 +19,6 @@ services:
       timeout: 5s
       retries: 10
 
-
   app:
     build: .
     container_name: app-estoque
@@ -33,5 +32,7 @@ services:
       - DB_URL=jdbc:mysql://${DB_HOST}:3306/${DB_NAME}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
+      - DB_PASSDEFAULT=${DB_PASSDEFAULT}
+
 volumes:
   db_data:

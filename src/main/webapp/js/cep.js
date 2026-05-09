@@ -55,13 +55,13 @@ async function buscarCEP(){
 
 function preencherCampos(dados){
     if(dados.aguardando){
-        document.getElementById("endereco").value = "Buscando Cep.....";
+        document.getElementById("logradouro").value = "Buscando Cep.....";
         document.getElementById("bairro").value = "Buscando Cep.....";
         document.getElementById("cidade").value = "Buscando Cep.....";
         document.getElementById("estado").value = "Buscando Cep.....";
         return;
     }
-    document.getElementById("endereco").value = dados.logradouro || "";
+    document.getElementById("logradouro").value = dados.logradouro || "";
     document.getElementById("bairro").value = dados.bairro || "";
     document.getElementById("cidade").value = dados.localidade || "";
     document.getElementById("estado").value = dados.uf || "";
@@ -72,7 +72,7 @@ function preencherCampos(dados){
 }
 
 function limparCampoEndereco(){
-    document.getElementById("endereco").value = "";
+    document.getElementById("logradouro").value = "";
     document.getElementById("numero").value = "";
     document.getElementById("bairro").value = "";
     document.getElementById("cidade").value = "";
