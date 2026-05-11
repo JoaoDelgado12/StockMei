@@ -18,8 +18,12 @@ public class ConnectionFactory {
             try {
                 Class.forName(DRIVER);
                 con = DriverManager.getConnection(URL, USER, PASSWORD);
+                System.err.println(URL);
                 
             }catch (Exception e){
+            	System.err.println(URL);
+            	System.err.println(USER);
+            	System.err.println(PASSWORD);
                 System.err.println("SQLException: Não foi conectado o banco.");
             }
             

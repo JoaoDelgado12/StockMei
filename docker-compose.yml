@@ -14,8 +14,8 @@ services:
       - db_data:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "${DB_HOST}", "-u", "${DB_USER}", "-p${DB_PASS}"]
-      interval: 5s
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$DB_PASS"]
+      interval: 20s
       timeout: 5s
       retries: 10
 
@@ -33,6 +33,5 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - DB_PASSDEFAULT=${DB_PASSDEFAULT}
-
 volumes:
   db_data:

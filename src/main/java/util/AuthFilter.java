@@ -34,7 +34,6 @@ public class AuthFilter implements Filter {
         }
 
         String permissao = (String) session.getAttribute("grupoPermissao");
-
         if(uri.contains("cadastro") && !"admin".equals(permissao)){
             res.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;

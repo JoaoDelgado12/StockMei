@@ -5,7 +5,9 @@ import connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.concurrent.ExecutionException;
 
 import Model.CadastroUsuarioModel;
 import util.SenhaHash;
@@ -17,7 +19,7 @@ import util.SenhaHash;
 
 public class CadastrosUserDAO {
 	
-	public void verificarOuInserir(String userDadoTarget, String tabela, String coluna , Connection con) {
+	public void verificarOuInserir(String userDadoTarget, String tabela, String coluna , Connection con) throws SQLException {
 	    // sei que tem que tomar cuidado com INJECTION SQL, mas o valor de fora não entra com o PreparedStatement
 	    String sqlBusca = "SELECT 1 FROM " + tabela + " WHERE " + coluna + " = ?";
 	    String sqlInsert = "INSERT INTO " + tabela + " (" + coluna + ") VALUES (?)";
@@ -40,12 +42,14 @@ public class CadastrosUserDAO {
 	        stmtInsert.close();
 	        
 	    }catch(Exception e) {
+        	con.rollback();
 	    	e.printStackTrace();
+	    	throw e;
 	    }
 	}
 
 	
-	public boolean cadastrarPerfilUsuario(CadastroUsuarioModel user, Connection con) {
+	public void cadastrarPerfilUsuario(CadastroUsuarioModel user, Connection con) throws SQLException {
 		verificarOuInserir(user.getFuncao(), "funcao_perfilUsuario", "funcao", con);
 		verificarOuInserir(user.getGrupoAcesso(), "grupoPermissao_perfilUsuario", "grupoPermissao", con);
 		
@@ -64,15 +68,13 @@ public class CadastrosUserDAO {
 			
 			stmt.close();
 			
-			return true;
-			
 		}catch(Exception e) {
 			e.printStackTrace();
-			return false;
+			throw e;
 		}
 	}
 	
-	public boolean cadastrarCepUsuario(CadastroUsuarioModel user, Connection con) {
+	public void cadastrarCepUsuario(CadastroUsuarioModel user, Connection con) throws SQLException {
 		verificarOuInserir(user.getEstado(), "estado", "estado", con);
 		verificarOuInserir(user.getCidade(), "cidade", "cidade", con);
 		
@@ -93,11 +95,9 @@ public class CadastrosUserDAO {
 			
 			stmt.close();
 			
-			return true;
-			
 		}catch(Exception e) {
 			e.printStackTrace();
-			return false;
+			throw e;
 		}
 	}
 	
@@ -137,6 +137,8 @@ public class CadastrosUserDAO {
             cadastrarPerfilUsuario(user, con);
     		cadastrarDadosUsuario(user, con);
     		
+    	     con.commit();
+    	     con.setAutoCommit(true);
     		return true;
         } catch (Exception e){
             e.printStackTrace();

@@ -1,7 +1,7 @@
 
 package Controller;
 
-import Dao._CadastrosUserDAO;
+import Dao.CadastrosUserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -42,7 +42,7 @@ public class CadastroController extends HttpServlet {
         );
         
       
-        _CadastrosUserDAO cadastroDao = new _CadastrosUserDAO();
+        CadastrosUserDAO cadastroDao = new CadastrosUserDAO();
         
         if(cadastroDao.cadastrar(cadastroUser)){
             response.sendRedirect(request.getContextPath() + "/pages/menu.html");
