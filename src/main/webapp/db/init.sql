@@ -1,11 +1,11 @@
 CREATE SCHEMA IF NOT EXISTS estoque_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE estoque_db ;
 
-CREATE TABLE IF NOT EXISTS funcao_perfilUsuario(
+CREATE TABLE IF NOT EXISTS funcao(
   funcao VARCHAR(100) PRIMARY KEY
 );
 
-CREATE TABLE IF NOT EXISTS grupoPermissao_perfilUsuario(
+CREATE TABLE IF NOT EXISTS grupoPermissao(
   grupoPermissao VARCHAR(100) PRIMARY KEY
 );
 
@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS perfilUsuario(
   usuario VARCHAR(100) UNIQUE, 
   senha VARCHAR(100),
   funcao VARCHAR(100),
-  CONSTRAINT fk_funcao_perfil FOREIGN KEY (funcao) REFERENCES funcao_perfilUsuario(funcao) on update cascade on delete restrict,
+  CONSTRAINT fk_funcao_perfil FOREIGN KEY (funcao) REFERENCES funcao(funcao) on update cascade on delete restrict,
   grupoPermissao VARCHAR(100),
-  CONSTRAINT fk_grupoPermissao_perfil FOREIGN KEY (grupoPermissao) REFERENCES grupoPermissao_perfilUsuario(grupoPermissao) on update cascade on delete restrict
+  CONSTRAINT fk_grupoPermissao_perfil FOREIGN KEY (grupoPermissao) REFERENCES grupoPermissao(grupoPermissao) on update cascade on delete restrict
 );
 
 
@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS  cidade(
 
 CREATE TABLE IF NOT EXISTS cepUsuario(
   id INT AUTO_INCREMENT PRIMARY KEY,
-  CONSTRAINT fk_idCepUsuario_perfilUsuario FOREIGN KEY (id) REFERENCES perfilUsuario(id) on update cascade on delete cascade,
+  idPerfil INT,
+  CONSTRAINT fk_idCepUsuario_perfilUsuario FOREIGN KEY (idPerfil) REFERENCES perfilUsuario(id) on update cascade on delete cascade,
   cep VARCHAR(11),
   estado VARCHAR(15),
   CONSTRAINT fk_estado_cepUsuario FOREIGN KEY (estado) REFERENCES estado(estado) on update cascade on delete cascade,
@@ -38,13 +39,14 @@ CREATE TABLE IF NOT EXISTS cepUsuario(
   CONSTRAINT fk_cidade_cepUsuario FOREIGN KEY (cidade) REFERENCES cidade(cidade) on update cascade on delete cascade,
   logradouro VARCHAR(50),
   numero int,
-  barrio VARCHAR(50),
+  bairro VARCHAR(50),
   complemento VARCHAR(150)
 );
 
 CREATE TABLE IF NOT EXISTS  dadosUsuario(
   id int AUTO_INCREMENT PRIMARY KEY,
-  CONSTRAINT fk_idDadosUsuario_perfilUsuario FOREIGN KEY (id) REFERENCES perfilUsuario(id) on delete cascade,
+  idPerfil INT,
+  CONSTRAINT fk_idDadosUsuario_perfilUsuario FOREIGN KEY (idPerfil) REFERENCES perfilUsuario(id) on delete cascade,
   nome VARCHAR(100), 
   sobrenome VARCHAR(100),
   dtaNascimento DATE,

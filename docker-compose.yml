@@ -13,14 +13,17 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./src/main/webapp/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./src/main/webapp/db/perfilADM.sql:/docker-entrypoint-initdb.d/perfilADM.sql
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$DB_PASS"]
-      interval: 20s
-      timeout: 5s
-      retries: 10
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$${DB_PASS}"]
+      interval: 10s
+      timeout: 20s
+      retries: 5
+      start_period: 10s
 
   app:
     build: .
+    image: stockmei
     container_name: app-estoque
     restart: always
     ports: 

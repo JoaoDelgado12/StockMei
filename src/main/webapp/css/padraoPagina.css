@@ -1,32 +1,95 @@
-body{
-    height: 100vh;
+body {
+    margin: 0; 
+    min-height: 100vh;
     display: flex;
+    flex-direction: column; 
 }
 
-body main{
-        margin-top: 50px; /*coloquei a main dentro de uma caixinha com as margens.*/
-        margin-bottom: 50px; 
-        margin-left: 20px;
-        margin-right: 20px;
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: linear-gradient(90deg, var(--primary-corfundolight), var(--primary-corfundodark));
+    height: 60px;
+    width: 100vw;
+    position: fixed; /* para alinhar os filhos */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* para manter ele sempre em cima */
 }
 
-header{
-    background: linear-gradient(90deg, var(--primary-corfundolight), var(--primary-corfundodark) );
+.user-profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    position: relative;
+}
+
+.user-profile {
+    display: flex;
+    border: none;
+    background: white;
+    padding: 0;
+    border-radius: 50%;
+    transition: transform 0.2s; 
+}
+
+.user-profile:hover {
+    transform: scale(1.1);
+}
+
+.profile-off {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    background-color: aliceblue;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute; /* como eu tinha colocar o relative no container, então ele ficou em relação ao container*/
+    top: 50px; /* Surge logo abaixo do avatar */
+    right: 0;  /* Alinha perfeitamente com a direita do container */
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1); 
+
+    /* Sistema de animalção*/
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.profile-on {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+}
+
+.profile-off ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-off ul li{
+    padding: 5px;
+}
+
+#btn-logout{
+	background: none;
+    border: 0;
+}
+
+body main {
+    flex: 1; /* Faz a main empurrar o footer sempre para o final da página */
+    margin-top: 80px; 
+}
+
+footer {
+    background: linear-gradient(90deg, var(--primary-corfundolight), var(--primary-corfundodark));
     height: 50px;
     width: 100vw;
-    display: block; /*trava na posição colocada*/
-    position: fixed; /* fixa na hora da rolagem da página, mesmo com a rolagem permanece no mesmo lugar da visualização*/ 
-    
 }
 
-footer{
-    background: linear-gradient(90deg, var(--primary-corfundolight), var(--primary-corfundodark) );
-    height: 50px;
-    width: 100vw;
-    position: absolute; /* fica no final de TODA página*/
-    bottom: 0; /* define a posição relativo a div pai */
-}
-
-button:hover{
+button:hover {
     cursor: pointer;
 }

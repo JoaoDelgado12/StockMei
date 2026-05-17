@@ -1,3 +1,3 @@
-document.getElementById("btnlogout").addEventListener("click", function(){
-window.location.href = "http://localhost:8080/logout";
-});
+/*document.getElementById("btn-logout").addEventListener("click", function(){
+window.location.href = "http://localhost:8080/index.html";
+});*/

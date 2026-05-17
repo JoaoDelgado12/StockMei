@@ -12,7 +12,7 @@ public class UserDAO {
     
     public UserModel validarLogin(UserModel usermodel){
         String sql = "SELECT pU.usuario, pU.senha, gP.grupoPermissao"
-        		+ " FROM perfilUsuario AS pU INNER JOIN grupoPermissao_perfilUsuario AS gP"
+        		+ " FROM perfilUsuario AS pU INNER JOIN grupoPermissao AS gP"
         		+ " ON pU.grupoPermissao = gP.grupoPermissao WHERE pU.usuario = ?";
         
         try (var con = ConnectionFactory.getConnection(); 
@@ -27,11 +27,6 @@ public class UserDAO {
 	      
                 	if(usermodel.getSenha().equals(System.getenv("DB_PASSDEFAULT")) || SenhaHash.verificarSenha(usermodel.getSenha(),hashBanco)) {
    
-                		//UserModel user = new UserModel();
-                		
-                		
-                		//user.setUsuario(rs.getString("pU.usuario"));
-                		//user.setSenha(hashBanco);
                 		usermodel.setPermissao(rs.getString("gP.grupoPermissao"));
                 		
                 		rs.close();

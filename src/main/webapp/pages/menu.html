@@ -12,7 +12,24 @@
     </head>
     <body>
         <header> 
-                
+            <div class="user-profile-container">
+                <!-- Perfil -->
+                <button type="button" class="user-profile">
+                    <img src="../IMG/userDefault.svg" alt="Foto de perfil do usuário">
+                </button>
+
+                <!-- Menu -->
+                <div class="profile-off">
+                    <ul>
+                        <li> <a href="#">Perfil</a> </li>
+                         
+                         <li> <form action="../logout" method="POST">
+                                <button type="submit" id="btn-logout">Sair do Sistema</button>
+                              </form> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </header>
         <main>
             
@@ -47,6 +64,8 @@
         <footer>
 
         </footer>
+        <script src="../js/padraoPagina.js"> </script> 
+        <script src="../js/logout.js"></script>
     </body>
 
 </html>

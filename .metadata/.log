@@ -1,0 +1,13 @@
+!SESSION 2026-05-16 22:15:16.628 -----------------------------------------------
+eclipse.buildId=4.39.0.20260305-0817
+java.version=21.0.10
+java.vendor=Ubuntu
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2026-05-16 22:15:34.436
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2026-05-16 22:16:50.694
+!MESSAGE Logback config file: /home/delgado/Documents/StockMei/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.101.20251017-1242.xml
