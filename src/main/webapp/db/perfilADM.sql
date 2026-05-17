@@ -18,7 +18,7 @@ INSERT INTO cidade (cidade) VALUES
 INSERT INTO cepUsuario 
 (idPerfil, cep, estado, cidade, logradouro, numero, bairro, complemento)
 VALUES
-(1, '40000000', 'BA', 'Salvador', 'Rua A', 100, 'Centro', 'Apto 101');
+(1, '40000000', 'Bahia', 'Salvador', 'Rua A', 100, 'Centro', 'Apto 101');
 
 INSERT INTO dadosUsuario
 (idPerfil, nome, sobrenome, dtaNascimento, sexo, cpf, email, telefone)
