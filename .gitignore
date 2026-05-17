@@ -6,6 +6,7 @@
 .project
 .settings/
 nb-configuration.xml
+.metadata/
 
 # Environment
 .env
