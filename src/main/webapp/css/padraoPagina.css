@@ -12,43 +12,34 @@ header {
     background: linear-gradient(90deg, var(--primary-corfundolight), var(--primary-corfundodark));
     height: 60px;
     width: 100vw;
+    gap: 10px;
     position: fixed; /* para alinhar os filhos */
     top: 0;
     left: 0;
     z-index: 1000; /* para manter ele sempre em cima */
 }
 
-.user-profile-container {
+.grupo-cadastro{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 30px;
+    flex-direction: column;
     position: relative;
 }
 
-.user-profile {
-    display: flex;
+.header-cadastro{
+    background-size: cover;
     border: none;
-    background: white;
-    padding: 0;
-    border-radius: 50%;
-    transition: transform 0.2s; 
 }
 
-.user-profile:hover {
-    transform: scale(1.1);
-}
-
-.profile-off {
+.secao-cadastro-off{
     display: flex;
     flex-direction: column;
     border: none;
     background-color: aliceblue;
     padding: 10px;
     border-radius: 5px;
-    position: absolute; /* como eu tinha colocar o relative no container, então ele ficou em relação ao container*/
-    top: 50px; /* Surge logo abaixo do avatar */
-    right: 0;  /* Alinha perfeitamente com a direita do container */
+    position: absolute; /* como eu tinha colocado o relative no container, então ele ficou em relação ao container*/
+    top: 0px; /* Surge logo abaixo do avatar */
+    right: 25px;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.1); 
 
     /* Sistema de animalção*/
@@ -58,30 +49,146 @@ header {
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
-.profile-on {
+.secao-cadastro-on {
     opacity: 1;
     visibility: visible;
     transform: translateY(0px);
 }
 
-.profile-off ul{
+.secao-cadastro-off ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.profile-off ul li{
+.secao-cadastro-off ul li{
     padding: 5px;
 }
 
-#btn-logout{
-	background: none;
-    border: 0;
+.secao-cadastro-off ul li a{
+    text-decoration: none; /* Remove o sublinhado */
+    transition: all 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+.secao-cadastro-off ul li a:visited {
+  color: #004499;
+}
+
+.secao-cadastro-off ul li a:hover {
+  color: #0099ff;
+  text-decoration: underline;
+}
+
+.secao-cadastro-off ul li a:active {
+  color: #002244;
+}
+
+/* Quando o usuário navega pelo teclado (ex: tecla Tab) */
+.secao-cadastro-off ul li a:focus {
+  outline: 2px dashed #0099ff;
+}
+
+/* CONTAINER DO PERFIL */
+.user-profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    position: relative;
+}
+
+/* O BOTÃO DO AVATAR */
+.user-profile {
+    display: flex;
+    border: none;
+    background: transparent; /* Remove o fundo branco para usar a tag <img> de dentro */
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden; /* Garante que a imagem interna fique redonda */
+    transition: transform 0.2s ease; 
+}
+
+/* ESTILIZAÇÃO DA IMAGEM REAL DENTRO DO BOTÃO */
+.user-profile img {
+    width: 40px;  /* Defina o tamanho que desejar para o avatar */
+    height: 40px; /* Precisa ser igual à largura para manter o círculo perfeito */
+    object-fit: cover; /* Faz o mesmo papel do 'background-size: cover' em tags de imagem */
+    border-radius: 50%;
+}
+
+.user-profile:hover,
+.user-profile:focus-visible {
+    transform: scale(1.05);
+}
+
+/* O MENU DROPDOWN */
+.profile-off {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px; 
+    background-color: #f0f8ff; 
+    padding: 8px; /* Reduzido para controlar o espaçamento interno via itens */
+    border-radius: 8px; 
+    position: absolute; 
+    top: calc(100% + 10px); 
+    right: 0;  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    z-index: 10; 
+
+    /* Sistema de animação */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.profile-on {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profile-off ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ESTILIZAÇÃO DOS LINKS E BOTÕES INTERNOS DO MENU */
+.btn-invPerfil {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+/* O hover agora é aplicado diretamente no link/botão clicável, e não na li */
+.btn-invPerfil:hover,
+.btn-invPerfil:focus-visible {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #000;
+}
+
+/* Ajuste para o formulário de logout não quebrar o layout */
+.profile-off form {
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 body main {
     flex: 1; /* Faz a main empurrar o footer sempre para o final da página */
-    margin-top: 80px; 
+    margin-top: 70px; 
 }
 
 footer {

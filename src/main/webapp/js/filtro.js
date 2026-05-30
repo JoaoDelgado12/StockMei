@@ -1,21 +1,21 @@
 async function filtroEstoque(){
     try{
-        const nome = document.getElementById("id do nome").value.toLowerCase()
-        const tipo = document.getElementById("id da seleção").value
-        const data  = document.getElementById("id da data").value
+        const nome = document.getElementById("pesquisarNome").value.toLowerCase()
+        const tipo = document.getElementById("tipoMovimentacao").value
+        const data  = document.getElementById("filtroData").value
         
         const url = `http://localhost:8080/api/estoque?nome=${encodeURIComponent(nome)}&tipo=${encodeURIComponent(tipo)}&data=${encodeURIComponent(data)}`
         const response = await fetch(url)
         const dados = await response.json()
         
-        const tabela = document.getElementById("id da tabela")
+        const tabela = document.getElementById("tabelaEstoque")
         
         tabela.innerHTML = ""
 
         const filtrados = dados.filter(item => {
             const matchNome = nome === "" || item.nomeproduto.toLowerCase()
-            const matchTipo = tipo === "" || item.status === tipo
-            const matchData = data === "" || item.datafabricao === data
+            const matchTipo = tipo === "" || item.status
+            const matchData = data === "" || item.datafabricao
             
             return matchTipo && matchData && matchNome
         })
@@ -41,4 +41,4 @@ async function filtroEstoque(){
     }
 }
 
-document.getElementById("botão de pesquisa").addEventListener("click", filtroEstoque);
+document.getElementById("btn-pesquisar").addEventListener("click", filtroEstoque);

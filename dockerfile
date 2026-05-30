@@ -7,7 +7,7 @@ WORKDIR /app
 #copiou no /app um pom.xml por conta do ponto
 COPY pom.xml .
 
-#baixar as dependencias corretamente para teste.
+#baixar as dependencias
 RUN mvn dependency:go-offline
 
 #copiou o src no path app/src

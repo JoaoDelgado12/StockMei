@@ -26,3 +26,7 @@ main button{
     border: 0px;
     
 }
+
+label:hover {
+    cursor:pointer;    
+}

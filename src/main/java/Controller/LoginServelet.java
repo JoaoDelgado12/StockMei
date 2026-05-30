@@ -1,13 +1,14 @@
 package Controller;
 
 import Dao.UserDAO;
-import Model.UserModel;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.UserModel;
+
 import java.io.IOException;
 
 /**

@@ -2,15 +2,21 @@ main {
     width: 100vw;
 }
 
-#sec-resumoEstoque {
+#agrupar-estoque{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#cards {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0px;
+    margin: 15px 20px;
     gap: 20px;
     
 }
 
-.card-resumo {
+#cards .card-resumo {
     background-color: var(--white);
     box-shadow: 0 4px 6px var(--shadow-default);
     border-radius: 10px;
@@ -20,34 +26,31 @@ main {
     transition: transform 0.2s;
 }
 
-.card-resumo:hover {
+#cards .card-resumo:hover {
     transform: translateY(-5px);
 }
 
-.titulo-card {
+.card-resumo .titulo-card {
     font-size: 20px;
     margin-bottom: 10px;
     color: var(--primary-medium);
 }
 
-.valor-card {
+.card-resumo .valor-card {
     font-size: 15px;
     color: var(--primary-dark);
 }
 
-#sec-filtro{
-    margin: 15px 0px;
+#filtro{
     display: flex;
     justify-content: center;
-    align-items: center
 }
 
-#filtro {
+#filtro-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
     justify-content: center;
-    border-radius: 20px;
+    gap: 20px;
     width: 90vw;
     background-color: var(--fundo-pesquisa);
     height: 50px;
@@ -80,14 +83,10 @@ label{
     border-color: var(--primary-medium); 
 }
 
-#pesq-nome{
-    width: 250px;
-}
-
 .btn-pesquisa{
+    background-size: cover;
     background-color: transparent;
     border: none;
-    border-radius: 15px;
     transition: background-color 0.2s;
 }
 
@@ -95,63 +94,47 @@ label{
     transform: translateY(-3px);
 }
 
-#center-tabela-wrapper{
+#tabelaEstoqueContainer{
     display: flex;
     justify-content: center;
 }
 
 .tabela-wrapper {
-    width: 90%;
+    display: flex;
+    width: 90vw;
     justify-content: center;
-    border-collapse: collapse;
     background-color: var(--white);
     box-shadow: 0 4px 6px var(--shadow-default);
     border-radius: 5px;
     overflow: hidden;
 }
 
-#tabelaEstoque th,
-#tabelaEstoque td {
-    padding: 8px 15px;
-    text-align: center;
-    border-bottom: 1px solid var(--primary-dark);
+#tabelaEstoque thead{
+    display:flex;
+    flex-direction: column;
 }
 
-#tabelaEstoque th {
-    background-color: var(--primary-medium);
-    color: var(--white);
+#tabelaEstoque th{
+    padding: 8px 15px;
+    margin: 5px 2px 3px;
+    text-align: center;
+    background-color: var(--gray-light);
     font-weight: bold;
 }
 
-#tabelaEstoque tr:nth-child(even) {
-    background-color: var(--gray-light);
+
+#paginacao{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+    width:90vw;
+    gap: 5px;
 }
 
-.controle-paginacao label{
-    font-size: 15px;
-    color: var(--primary-light);
-}
-
-#pagina {
-    border: 1px solid var(--primary-light);
-    border-radius: 5px;
-}
-
-.container-btn 
-a#btnVoltar
-#btnProximo:hover {
-    margin-top: 0px;
-    padding: 5px 10px;
-    background-color: var(--primary-light);
-    color: var(--primary-light);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.container-btn 
-a#btnVoltar
-#btnProximo:hover {
-    background-color: var(--primary-light);
+#paginacao #pagina{
+    width: 60px;
+    height:20px ;
+    text-align:center;
 }

@@ -1,16 +1,17 @@
 body{
-    background-color: var(--gray-light);
+    background: linear-gradient(180deg, #5db7f3e0, #84c9f7e0) ;
     color: var(--gray-dark);
+    min-height: 100vh;
 }
 
 #header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--white);
+    background-color: white;
     padding: 15px 30px;
     box-shadow: 0 2px 5px var(--shadow-default);
-    margin-block: 20px;
+    margin-block: 5px 10px;
 }
 
 
@@ -41,7 +42,7 @@ nav a:hover{
 }
 
 .container{
-    background-color: var(--white);
+    background-color: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px var(--shadow-default);

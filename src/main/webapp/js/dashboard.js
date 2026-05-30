@@ -23,24 +23,33 @@ async function carregarEstoque(){
             tabela.innerHTML += linha;
     })
     }catch(erro){
-        console.log("Erro ao cadastrar os produtos", erro);
+        console.log("Erro ao carregar os produtos", erro);
     }
 }
 
 
 async function carregarResumo(){
     try{
-        const response = await fetch("http://localhost:8080/api/resumo");
+        const response = await fetch("http://localhost:8080/api/estoque/resumo");
         const dados = await response.json();
 
         document.getElementById("cardEntrada").innerHTML = dados.entradaVal;
         document.getElementById("cardSaida").innerHTML = dados.saidaVal;
         document.getElementById("cardTotal").innerHTML = dados.totalVal;
     }catch(erro){
-        console.log("Erro da consulta dos daods", erro);
+        console.log("Erro da consulta dos dados", erro);
 
     }
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+    const pagina = document.getElementById("pagina");
+    pagina.addEventListener("input", function(){
+        this.value = this.value.replace(/\D/g,"");
+        
+    });
+});
+
 window.onload = () => {
     carregarEstoque();
     carregarResumo();

@@ -2,8 +2,8 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="../css/reset.css">
-        <link rel="stylesheet" type="text/css" href="../css/padraoPagina.css"> 
         <link rel="stylesheet" type="text/css" href="../css/color.css"> 
+        <link rel="stylesheet" type="text/css" href="../css/padraoPagina.css"> 
         <link rel="stylesheet" type="text/css" href="../css/menu.css">
         
         <title>Menu</title>
@@ -12,19 +12,32 @@
     </head>
     <body>
         <header> 
+            <div class="grupo-cadastro">
+                <div class="secao-cadastro-off">
+                    <ul>
+                        <li> <a href="./pagesCadastro/cadastroProduto.html">Cadastrar Produto</a> </li>
+                        <li> <a href="./pagesCadastro/cadastroUsuario.html">Cadastrar Usuario</a> </li>
+                    </ul>
+                </div>
+
+                <!-- Modo cadastro off-->
+                <button class="header-cadastro">
+                    <img src="../IMG/plus.svg" alt="botão de cadastrar produto"> 
+                </button>
+            </div>
+
             <div class="user-profile-container">
                 <!-- Perfil -->
-                <button type="button" class="user-profile">
+                <button class="user-profile">
                     <img src="../IMG/userDefault.svg" alt="Foto de perfil do usuário">
                 </button>
 
                 <!-- Menu -->
                 <div class="profile-off">
                     <ul>
-                        <li> <a href="#">Perfil</a> </li>
-                         
+                        <li> <a class="btn-invPerfil">Perfil</a> </li>
                          <li> <form action="../logout" method="POST">
-                                <button type="submit" id="btn-logout">Sair do Sistema</button>
+                                <button type="submit" class="btn-invPerfil">Sair do Sistema</button>
                               </form> 
                         </li>
                     </ul>
@@ -35,26 +48,26 @@
             
                  <div class="aligncontainer"> 
                     <div class="container"> 
-                        <a href="relatorio.html">
+                        <a id="a-relatorio" href="relatorio.html">
                             <button>
                                <img src="../IMG/relatorio.png" alt="um icone para represenar relatórios.">
-                               <label> Relatórios </label>
+                               <label for="a-relatorio" > Relatórios </label>
                            </button>
                         </a>
                    </div>
                 <div class="container">
-                    <a href="controleestoque.html">
+                    <a id="a-estoque" href="controleestoque.html">
                         <button>
                          <img src="../IMG/estoque.png" alt="um icone para represenar estoque.">
-                        <label> Controle de estoque </label>
+                        <label for="a-estoque"> Controle de estoque </label>
                         </button>
                     </a>
                 </div>
                 <div class="container"> 
-                    <a href="cadastro.html">
+                    <a id="a-ctrlCusto" href="./pagesCadastro/cadastroUsuario.html">
                     <button>
                           <img src="../IMG/custo.png" alt="um icone para represenar controle de custos..">
-                          <label> Controle de custo </label>
+                          <label for="a-ctrlCusto"> Controle de custo </label>
                     </button>
                     </a>
                 </div>

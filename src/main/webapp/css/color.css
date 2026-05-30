@@ -1,6 +1,6 @@
 :root {
     /* Cores principais */
-    --primary-corfundolight: #4EB0E6;
+    --primary-corfundolight: #57b2e4;
     --primary-corfundodark: #194B77;
     --primary-light: #bbe1fa;
     
@@ -15,7 +15,7 @@
 
     /* Neutros */
     --white: #ffffff;
-    --gray-light: #f5f5f5;
+    --gray-light: #d3cece85;
     --gray-medium: #cccccc;
     --gray-dark: #333333;
 
