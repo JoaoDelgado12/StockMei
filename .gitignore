@@ -12,6 +12,8 @@ nb-configuration.xml
 .env
 
 # Opcional
-/db/
+/src/main/webapp/db
 anotacoes
+
+
 

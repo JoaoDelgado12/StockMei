@@ -1,10 +1,10 @@
 async function filtroEstoque(){
     try{
         const nome = document.getElementById("pesquisarNome").value.toLowerCase()
-        const tipo = document.getElementById("tipoMovimentacao").value
+        const marca = document.getElementById("filtroMarca").value
         const data  = document.getElementById("filtroData").value
         
-        const url = `http://localhost:8080/api/estoque?nome=${encodeURIComponent(nome)}&tipo=${encodeURIComponent(tipo)}&data=${encodeURIComponent(data)}`
+        const url = `http://localhost:8080/api/estoque/filtro?nome=${encodeURIComponent(nome)}&tipo=${encodeURIComponent(marca)}&data=${encodeURIComponent(data)}`
         const response = await fetch(url)
         const dados = await response.json()
         
@@ -23,14 +23,12 @@ async function filtroEstoque(){
         filtrados.forEach(item => {
             const linha = `
             <tr>
-                <td>${item.codigobarras}</td>
-                <td>${item.nomeprodutoi}</td>
-                <td>${item.fabricante}</td>
-                <td>${item.marca}</td>
+                <td>${item.nome}</td>
                 <td>${item.quantidade}</td>
+                <td>${item.marca}</td>
+                <td>${item.preco}</td>
+                <td>${parseFloat(item.desconto).toFixed(2)}</td>
                 <td>${parseFloat(item.total).toFixed(2)}</td>
-                <td>${parseFloat(item.preco_venda).toFixed(2)}</td>
-                <td>${parseFloat(item.preco_compra).toFixed(2)}</td>
             </tr>
             `
             tabela.innerHTML += linha;

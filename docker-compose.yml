@@ -14,6 +14,7 @@ services:
       - db_data:/var/lib/mysql
       - ./src/main/webapp/db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./src/main/webapp/db/perfilADM.sql:/docker-entrypoint-initdb.d/perfilADM.sql
+      - ./src/main/webapp/db/popularTeste.sql:/docker-entrypoint-initdb.d/popularTeste.sql
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$${DB_PASS}"]
       interval: 10s
@@ -24,7 +25,7 @@ services:
   app:
     build: .
     image: stockmei
-    container_name: app-estoque
+    container_name: app-stockmei
     restart: always
     ports: 
       - "8080:8080"

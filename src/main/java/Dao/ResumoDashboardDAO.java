@@ -1,0 +1,83 @@
+package Dao;
+
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
+import connection.ConnectionFactory;
+
+public class ResumoDashboardDAO {
+    
+    private String resultado;
+    
+    public boolean calcular() {
+        String sqlEntrada = "SELECT SUM(precoTotal) AS SomaPreco FROM Venda"; 
+        String sqlSaida = "SELECT SUM(precoCompraTotal) AS SomaPreco FROM HistEstoque"; 
+        
+        try (Connection con = ConnectionFactory.getConnection()) {
+            
+            BigDecimal entrada = BigDecimal.ZERO;
+            try (PreparedStatement stmt = con.prepareStatement(sqlEntrada);
+                 ResultSet result = stmt.executeQuery()) {
+                 
+                if (result.next()) {
+                    BigDecimal valor = result.getBigDecimal("SomaPreco");
+                    if (valor != null) {
+                        entrada = valor;
+                    }
+                }
+            }
+            
+            BigDecimal saida = BigDecimal.ZERO;
+            try (PreparedStatement stmt = con.prepareStatement(sqlSaida);
+                 ResultSet result = stmt.executeQuery()) {
+                
+                if (result.next()) {
+                    BigDecimal valor = result.getBigDecimal("SomaPreco");
+                    if (valor != null) {
+                        saida = valor;
+                    }
+                }
+            }
+            
+
+            BigDecimal total = entrada.subtract(saida); //para manter a precisão
+            
+            
+            Map<String, BigDecimal> tabela = new HashMap<>();
+            tabela.put("entrada", entrada);
+            tabela.put("saida", saida);
+            tabela.put("total", total);
+            
+
+            String json = String.format(
+                "{\"entrada\": %.2f, \"saida\": %.2f, \"total\": %.2f}",
+                tabela.get("entrada"),
+                tabela.get("saida"),
+                tabela.get("total")
+            );
+            
+            setResultado(json.replace(",", "."));
+            
+            return true;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+	public String getResultado() {
+		return resultado;
+	}
+
+
+
+	public void setResultado(String resultado) {
+		this.resultado = resultado;
+	}
+}
