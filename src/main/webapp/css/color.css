@@ -1,7 +1,7 @@
 :root {
     /* Cores principais */
     --primary-corfundolight: #57b2e4;
-    --primary-corfundodark: #194B77;
+    --primary-corfundodark: #205e94;
     --primary-light: #bbe1fa;
     
     /* Barras */
@@ -24,4 +24,8 @@
     
     /* cor de alertas */
     --red-aviso: #F53C3D;
+    
+    /* cor de saldo positivo e negativo*/
+    --negativo: #e63946;
+    --positivo: #2ecc71;
 }

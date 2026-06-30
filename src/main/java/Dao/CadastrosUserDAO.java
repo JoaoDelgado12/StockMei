@@ -12,142 +12,161 @@ import java.time.LocalDate;
 
 import util.SenhaHash;
 
-/**
- *
- * @author Master
- */
-
 public class CadastrosUserDAO {
 	private int idPerfil;
 	
 	public void verificarOuInserir(String userDadoTarget, String tabela_coluna, Connection con) throws SQLException {
 	    // sei que tem que tomar cuidado com INJECTION SQL, mas o valor de fora não entra com o PreparedStatement
-	    String sqlBusca = "SELECT 1 FROM " + tabela_coluna + " WHERE " + tabela_coluna + " = ?";
-	    String sqlInsert = "INSERT INTO " + tabela_coluna + " (" + tabela_coluna + ") VALUES (?)";
-	    
-	    try {
-	    	PreparedStatement stmtBusca = con.prepareStatement(sqlBusca);
-	        stmtBusca.setString(1, userDadoTarget);
-	        ResultSet rs = stmtBusca.executeQuery();
-	        if (rs.next()) {
-	        	rs.close();
-	        	stmtBusca.close();
-	        	return ;
-	        }
-	        
+		   if (userDadoTarget == null || userDadoTarget.trim().isBlank()) {
+		        return;
+		    }
 
-	        PreparedStatement stmtInsert = con.prepareStatement(sqlInsert);
-	        stmtInsert.setString(1, userDadoTarget);
-	        stmtInsert.executeUpdate();
+		    String sqlSelect = "SELECT 1 FROM " + tabela_coluna + " WHERE " + tabela_coluna + " = ?";
+		    try (PreparedStatement stmtSelect = con.prepareStatement(sqlSelect)) {
+		        stmtSelect.setString(1, userDadoTarget);
+		        try (ResultSet rs = stmtSelect.executeQuery()) {
+		            if (rs.next()) {
+		                return;
+		            }
+		        }
+		    }
+
+		    String sqlInsert = "INSERT INTO " + tabela_coluna + " (" + tabela_coluna + ") VALUES (?)";
+		    try (PreparedStatement stmtInsert = con.prepareStatement(sqlInsert)) {
+		        stmtInsert.setString(1, userDadoTarget);
+		        stmtInsert.executeUpdate();
+		    }
 	        
-	        stmtInsert.close();
-	        
-	    }catch(Exception e) {
-        	con.rollback();
-	    	e.printStackTrace();
-	    	throw e;
-	    }
 	}
 
 	
-	public void cadastrarPerfilUsuario(CadastroUsuarioModel user, Connection con) throws SQLException {		
+	public void cadastrarPerfilUsuario(CadastroUsuarioModel user, Connection con, String[] listUser) throws SQLException, RuntimeException {		
 		String sqlInsert = "INSERT INTO perfilUsuario (usuario, senha, funcao, grupoPermissao) VALUES"
-				+ "(?,?,?,?)";
-		
-		try(PreparedStatement stmt = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS)){
+				+ " (?,?,?,?)";
+		try(PreparedStatement stmt = con.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);){
 			
-			stmt.setString(1, user.getUsuario());
 			String senhaHash = SenhaHash.gerarHash(user.getSenha()); 
-			stmt.setString(2, senhaHash);
-			stmt.setString(3, user.getFuncao());
-			stmt.setString(4, user.getGrupoAcesso());
+			
+			listUser = new String[] {user.getUsuario(), senhaHash, user.getFuncao(), user.getGrupoAcesso()};
+			
+			for(int i=0; i<listUser.length; i++) {
+				if(listUser[i] == null || listUser[i].trim().isBlank()) {
+					throw new RuntimeException("Dados obrigatorios.");
+				}
+				stmt.setString(i + 1, listUser[i]);
+			}
 			
 			stmt.executeUpdate();
 			
-			ResultSet rs  = stmt.getGeneratedKeys();
-			rs.next();
-			idPerfil = rs.getInt(1);
-			
-			rs.close();
-			stmt.close();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw e;
+			try(ResultSet rs  = stmt.getGeneratedKeys();){
+				rs.next();
+				this.idPerfil = rs.getInt(1);
+			}
 		}
 	}
 	
-	public void cadastrarCepUsuario(CadastroUsuarioModel user, Connection con) throws SQLException {
-		String sql = "INSERT INTO cepUsuario (idPerfil, cep, estado, cidade, logradouro, numero, bairro, complemento) VALUES"
+	public void cadastrarCepUsuario(CadastroUsuarioModel user, Connection con, String[] listUser) throws SQLException {
+		String sql = "INSERT INTO cepUsuario (idPerfil, cep, estado, cidade, logradouro, bairro, complemento, numero) VALUES"
 				+ "(?,?,?,?,?,?,?,?)";
-		
-		try(PreparedStatement stmt = con.prepareStatement(sql)){
+		try(PreparedStatement stmt = con.prepareStatement(sql);){
 			
-			stmt.setInt(1, idPerfil);
-			stmt.setString(2, user.getCep());
-			stmt.setString(3, user.getEstado());
-			stmt.setString(4, user.getCidade());
-			stmt.setString(5, user.getLogradouro());
-			stmt.setInt(6, Integer.parseInt(user.getNumero()) );
-			stmt.setString(7, user.getBairro());
-			stmt.setString(8, user.getComplemento());
+			listUser = new String[] {user.getCep(), user.getEstado(), user.getCidade(),
+					user.getLogradouro(), user.getBairro(), user.getComplemento()};
+			
+			for(int i=0; i<listUser.length; i++) {
+				if(listUser[i] == null || listUser[i].trim().isEmpty()) {
+					stmt.setNull(i+2, java.sql.Types.VARCHAR);
+				}else {
+					stmt.setString(i+2, listUser[i]);
+				}
+			}
+			
+			if(user.getNumero() == null || user.getNumero().trim().isEmpty()) {
+				stmt.setNull(8, java.sql.Types.INTEGER);
+			}else {
+				stmt.setInt(8, Integer.parseInt(user.getNumero()) );
+				
+			}
+			
+			stmt.setInt(1, this.idPerfil);
 			
 			stmt.executeUpdate();
-			
-			stmt.close();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw e;
 		}
+		
 	}
 	
-	public boolean cadastrarDadosUsuario(CadastroUsuarioModel user, Connection con) {
+	public void cadastrarDadosUsuario(CadastroUsuarioModel user, Connection con, String[] listUser) throws SQLException, RuntimeException {
 		
-		String sql = "INSERT INTO dadosUsuario (idPerfil, nome, sobrenome, dtaNascimento, sexo, cpf, cep, email, telefone) VALUES"
-				+ "(?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO dadosUsuario (idPerfil, nome, sobrenome, cpf ,sexo, email, telefone, dtaNascimento) VALUES"
+				+ "(?,?,?,?,?,?,?,?)";
+		try(PreparedStatement stmt = con.prepareStatement(sql);){
+			listUser = new String[]{user.getNome(), user.getSobrenome(), user.getCpf()};
+			int sizeOld = listUser.length;
+			for(int i=0; i<sizeOld; i++) {
+				if(listUser[i] == null && listUser[i].trim().isEmpty()) {
+					throw new RuntimeException("Dados Obrigatorio");
+				}else {
+					stmt.setString(i+2, listUser[i]);
+				}
+			}
+			
+			listUser = new String[] {user.getSexo(), user.getEmail(), user.getTelefone()};
+			
+			for(int i=0; i<listUser.length; i++) {
+				if(listUser[i] == null || listUser[i].trim().isEmpty()) {
+					stmt.setNull(i, java.sql.Types.VARCHAR);
+				}else {
+					stmt.setString(i + sizeOld + 2, listUser[i]);
+					
+				}
+			}
+			
+			if(user.getDtaNascimento() == null || user.getDtaNascimento().trim().isEmpty()) {
+				stmt.setNull(8, java.sql.Types.DATE);
+			}else {
+				LocalDate userData = LocalDate.parse(user.getDtaNascimento());
+				stmt.setDate(8, java.sql.Date.valueOf(userData) );
+				
+			}
 		
-		try(PreparedStatement stmt = con.prepareStatement(sql)){
-			
-			stmt.setInt(1, idPerfil);
-			stmt.setString(2, user.getNome());
-			stmt.setString(3, user.getSobrenome());
-			stmt.setDate(4, java.sql.Date.valueOf( LocalDate.parse(user.getDtaNascimento()) ) );
-			stmt.setString(5, user.getSexo());
-			stmt.setString(6, user.getCpf());
-			stmt.setString(7, user.getCep());
-			stmt.setString(8, user.getEmail());
-			stmt.setString(9, user.getTelefone());
-			
-			stmt.executeUpdate();
-			
-			stmt.close();
-			
-			return true;
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			return false;
+		stmt.setInt(1, this.idPerfil);
+		
+		stmt.executeUpdate();
 		}
+			
 	}
 	
     public boolean cadastrar(CadastroUsuarioModel user){
-        try(var con = ConnectionFactory.getConnection()){
+    	Connection con =null;
+        try{
+        	con = ConnectionFactory.getConnection();
             con.setAutoCommit(false);
             
-            verificarOuInserir(user.getGrupoAcesso(), "grupoPermissao", con);
-            verificarOuInserir(user.getFuncao(), "funcao", con);
-    		verificarOuInserir(user.getEstado(), "estado",con);
-    		verificarOuInserir(user.getCidade(), "cidade",con);
+            String[] listUser = new String[]{user.getGrupoAcesso(), "grupoPermissao",
+            		user.getFuncao(), "funcao", 
+            		user.getEstado(), "estado",
+            		user.getCidade(), "cidade"};
             
-            cadastrarCepUsuario(user, con);
-            cadastrarPerfilUsuario(user, con);
-    		cadastrarDadosUsuario(user, con);
+            for(int i = 0; i<listUser.length; i += 2) {
+            	verificarOuInserir(listUser[i], listUser[i+1], con);
+            }
+            
+            
+            cadastrarPerfilUsuario(user, con, listUser);
+            cadastrarCepUsuario(user, con, listUser);
+    		cadastrarDadosUsuario(user, con, listUser);
     		
     	     con.commit();
     	     con.setAutoCommit(true);
     		return true;
         } catch (Exception e){
+        	if(con != null) {
+        		try {
+        			con.rollback();
+        		}catch(SQLException ea){
+        			ea.printStackTrace();
+        		}
+        	}
             e.printStackTrace();
             return false;
         }

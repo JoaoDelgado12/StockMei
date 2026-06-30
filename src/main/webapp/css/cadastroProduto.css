@@ -41,10 +41,9 @@ nav a:hover{
     justify-content: center;
 }
 
-.container{
+.containerPrincipal{
     background-color: white;
     padding: 30px;
-    margin-bottom: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px var(--shadow-default);
     width: 100%;
@@ -54,8 +53,7 @@ nav a:hover{
     flex-wrap: wrap; /* quebra minima de espaço de tela */
 }
 
-.dadosPessoais,
-.containerEndereco{
+.dadosProduto{
     flex: 1;
     min-width: 300px;
     display: flex;
@@ -82,7 +80,7 @@ select:focus{
     border-color: var(--primary-medium);
 }
 
-.dadosPessoais p{
+.dadosProduto p{
     margin-top: 10px;
     font-weight: bold;
 }
@@ -90,12 +88,15 @@ select:focus{
 .btn{
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
     margin-top: 20px;
+    position: relative;
 }
 
-.btn button{
+.btn #cadastrar{
     padding: 12px 30px;
+    position: absolute;
     background-color: var(--success);
     color: var(--white);
     border: none;
@@ -105,6 +106,22 @@ select:focus{
     transition: 0.2s;
 }
 
-.btn button:hover{
+.btn #cadastrar:hover{
     background-color: var(--success-hover);
+}
+
+.btn #novoEstoque{
+    padding: 7px 20px;
+    margin-left: auto;
+    background-color: var(--primary-corfundolight);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn #novoEstoque:hover{
+    background-color: var(--primary-corfundodark);
 }

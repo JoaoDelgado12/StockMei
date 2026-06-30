@@ -46,45 +46,45 @@
     </header>
     <main>
         <section id="cards">
-            <div class="card-resumo">
-                <h3 class="titulo-card">Entrada</h3>
-                <p class="valor-card" id="cardEntrada">0</p>
-            </div>
-
-            <div class="card-resumo">
-                <h3 class="titulo-card">Saída</h3>
-                <p class="valor-card">0</p>
-            </div>
-
-            <div class="card-resumo">
-                <h3 class="titulo-card">Total</h3>
-                <p class="valor-card" id="cardTotal">0</p>
-            </div>
+	            <div class="card-resumo card-Entrada">
+	                <h3 class="titulo-card">Entrada</h3>
+	                <p class="valor-card" id="cardEntrada">0</p>
+	            </div>
+	
+	            <div class="card-resumo card-Saida">
+	                <h3 class="titulo-card">Saída</h3>
+	                <p class="valor-card" id="cardSaida">0</p>
+	            </div>
+	
+	            <div class="card-resumo card-Total-Positivo">
+	                <h3 class="titulo-card">Total</h3>
+	                <p class="valor-card" id="cardTotal">0</p>
+	            </div>
         </section>
         <section id="agrupar-estoque">
             <section id="filtro">
-                <div id="filtro-container">
-                    <div class="grupo-filtro">
-                        <label for="filtroData">Data</label>
-                        <input type="date" id="filtroData" class="input-filtro">
-                    </div>
-                    <div class="grupo-filtro">
-                        <label for="marca">Marca</label>
-                        <select id="filtroMarca" class="select-filtro">
-                            <option value="">Selecione uma opção</option>
-                            <option value="entrada">Entrada</option>
-                            <option value="saida">Saída</option>
-                        </select>
-                    </div>
-                    <div class="grupo-filtro pesquisa-nome">
-                        <label for="pesquisarNome">Nome do produto</label>
-                        <input type="text" id="pesquisarNome" class="input-filtro" placeholder="Digite o nome do produto">
-                    </div>
-                    <div class="grupo-filtro botao-pesquisa">
-                        <button class="btn-pesquisa" id="btn-pesquisar">
-                            <img src="../IMG/busca.png" >
-                        </button>
-                    </div>
+            	<div id="filtro-container">
+                   <div class="grupo-filtro">
+                       <label for="filtroData">Data</label>
+                       <input type="date" id="filtroData" class="input-filtro">
+                   </div>
+                   <div class="grupo-filtro">
+                       <label for="filtroMarca">Marca</label>
+                       <select id="filtroMarca" class="select-filtro">
+                           <option value="">Selecione uma opção</option>
+                           <option value="entrada">Entrada</option>
+                           <option value="saida">Saída</option>
+                       </select>
+                   </div>
+                   <div class="grupo-filtro pesquisa-nome">
+                       <label for="pesquisarNome">Nome do produto</label>
+                       <input type="text" id="pesquisarNome" class="input-filtro" placeholder="Digite o nome do produto">
+                   </div>
+                   <div class="grupo-filtro botao-pesquisa">
+                       <button class="btn-pesquisa" id="btn-pesquisar">
+                           <img src="../IMG/busca.png" >
+                       </button>
+                   </div>
                 </div>
             </section>
             <section id="tabelaEstoqueContainer">
@@ -95,9 +95,9 @@
                                 <th>Nome</th>
                                 <th>Quantidade</th>
                                 <th>Marca</th>
-                                <th>Preço(UNI)</th>
+                                <th>Preço Unidade</th>
                                 <th>Desconto</th>
-                                <th>Total</th>
+                                <th>Preço Total</th>
                             </tr>
                         </thead>
                         <tbody id="corpoTabela"></tbody>

@@ -1,7 +1,6 @@
 package Controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import Dao.FiltroDashboardDAO;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,30 +9,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.FiltroDashboardModel;
 
-@WebServlet("/api/estoque/filtro")
-public class FIltroDashboardController extends HttpServlet{
+@WebServlet("/api/estoque/all")
+public class ShowAllDashController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		FiltroDashboardModel dashModel = new FiltroDashboardModel("", "","");
 		
-		FiltroDashboardModel filtroModel = new FiltroDashboardModel(request.getParameter("nome"),
-				request.getParameter("data"),
-				request.getParameter("marca"));
-	
+		FiltroDashboardDAO dashDao = new FiltroDashboardDAO();
 		
-		FiltroDashboardDAO filtroDAO = new FiltroDashboardDAO();
-		
-		if(filtroDAO.filtrar(filtroModel)) {
-			response.setContentType("Application/json");
+		if(dashDao.filtrar(dashModel)) {
+			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			
-			response.getWriter().write(filtroDAO.getResultado());
+			response.getWriter().write(dashDao.getResultado());
+			
 			response.setStatus(HttpServletResponse.SC_OK);
-		}else{
+		}else {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
-		
-		
-		
 	}
-}
 
+}

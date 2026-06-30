@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
+
 import connection.ConnectionFactory;
 
 public class ResumoDashboardDAO {
@@ -22,7 +25,7 @@ public class ResumoDashboardDAO {
             try (PreparedStatement stmt = con.prepareStatement(sqlEntrada);
                  ResultSet result = stmt.executeQuery()) {
                  
-                if (result.next()) {
+                while (result.next()) {
                     BigDecimal valor = result.getBigDecimal("SomaPreco");
                     if (valor != null) {
                         entrada = valor;
@@ -34,9 +37,9 @@ public class ResumoDashboardDAO {
             try (PreparedStatement stmt = con.prepareStatement(sqlSaida);
                  ResultSet result = stmt.executeQuery()) {
                 
-                if (result.next()) {
+                while (result.next()) {
                     BigDecimal valor = result.getBigDecimal("SomaPreco");
-                    if (valor != null) {
+                    if (valor != null){
                         saida = valor;
                     }
                 }
@@ -51,15 +54,9 @@ public class ResumoDashboardDAO {
             tabela.put("saida", saida);
             tabela.put("total", total);
             
-
-            String json = String.format(
-                "{\"entrada\": %.2f, \"saida\": %.2f, \"total\": %.2f}",
-                tabela.get("entrada"),
-                tabela.get("saida"),
-                tabela.get("total")
-            );
+            Gson gson= new Gson();
             
-            setResultado(json.replace(",", "."));
+            setResultado(gson.toJson(tabela));
             
             return true;
             
@@ -74,8 +71,6 @@ public class ResumoDashboardDAO {
 	public String getResultado() {
 		return resultado;
 	}
-
-
 
 	public void setResultado(String resultado) {
 		this.resultado = resultado;

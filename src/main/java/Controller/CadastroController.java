@@ -10,14 +10,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.CadastroUsuarioModel;
 
 import java.io.IOException;
-/**
- *
- * @author Master
- */
-@WebServlet("/cadastro/usuario")
+
+@WebServlet("/api/cadastro/usuario")
 public class CadastroController extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         
         CadastroUsuarioModel cadastroUser = new CadastroUsuarioModel(
         request.getParameter("nameFirst"),
@@ -45,9 +42,11 @@ public class CadastroController extends HttpServlet {
         CadastrosUserDAO cadastroDao = new CadastrosUserDAO();
         
         if(cadastroDao.cadastrar(cadastroUser)){
+            response.setStatus(HttpServletResponse.SC_OK);
             response.sendRedirect(request.getContextPath() + "/pages/menu.html");
         }else{
-            response.sendRedirect(request.getContextPath() + "/pages/cadastro.html");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.sendRedirect(request.getContextPath() + "/pages/menu.html");
         }
     }
 }

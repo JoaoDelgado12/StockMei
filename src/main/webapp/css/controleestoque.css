@@ -23,6 +23,7 @@ main {
     flex: 1;
     padding: 20px;
     text-align: center;
+    color: var(--white)
     transition: transform 0.2s;
 }
 
@@ -30,15 +31,31 @@ main {
     transform: translateY(-5px);
 }
 
-.card-resumo .titulo-card {
+#cards .card-resumo .titulo-card {
     font-size: 20px;
     margin-bottom: 10px;
     color: var(--primary-medium);
 }
 
-.card-resumo .valor-card {
+#cards .card-resumo .valor-card {
     font-size: 15px;
     color: var(--primary-dark);
+}
+
+#cards .card-Entrada{
+	background-color: var(--positivo);
+}
+
+#cards .card-Saida{
+	background-color: var(--negativo);
+}
+
+#cards .card-Total-Positivo{
+	background-color: var(--positivo);
+}
+
+#cards .card-Total-Negativo{
+	background-color: var(--negativo);
 }
 
 #filtro{
@@ -100,6 +117,54 @@ label{
 }
 
 .tabela-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#tabelaEstoque {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaços duplos entre as bordas */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+#tabelaEstoque thead tr {
+    background-color: #2c3e50; /* Cor escura moderna */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#tabelaEstoque  th, 
+#tabelaEstoque  td {
+    padding: 12px 15px; /* Espaçamento interno confortável */
+    border-bottom: 1px solid #e0e0e0; /* Linha sutil divisória */
+}
+
+#tabelaEstoque tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+
+#tabelaEstoque  tbody tr:hover {
+    background-color: #f1f3f5;
+    cursor: pointer;
+}
+
+
+#tabelaEstoque  thead tr:first-child th:first-child {
+    border-top-left-radius: 8px;
+}
+#tabelaEstoque  thead tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+}
+
+
+/*
+.tabela-wrapper {
     display: flex;
     width: 90vw;
     justify-content: center;
@@ -122,7 +187,12 @@ label{
     font-weight: bold;
 }
 
+#tabelaEstoque td {
+    padding: 12px;
+    text-align: center;
+}
 
+*/
 #paginacao{
     display: flex;
     flex-direction: row;

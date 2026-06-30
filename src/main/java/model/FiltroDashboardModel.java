@@ -7,16 +7,17 @@ public class FiltroDashboardModel {
 	
 	public FiltroDashboardModel(String nome,String data,String marca) {
 		this.nome = nome;
-		this.setData(data);
-		this.marca = marca;
+		this.data = data;
+		this.marca= marca;
 	}
 	
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public String getMarca() {
 		return this.marca;
 	}
@@ -25,7 +26,7 @@ public class FiltroDashboardModel {
 	}
 
 	public String getData() {
-		return data;
+		return this.data;
 	}
 
 	public void setData(String data) {

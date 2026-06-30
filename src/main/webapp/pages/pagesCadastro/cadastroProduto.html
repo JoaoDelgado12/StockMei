@@ -1,8 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel="stylesheet" href="../../css/reset.css"/>
         <link rel="stylesheet" href="../../css/color.css"/>
-        <link rel="stylesheet" href="../../css/cadastro.css"/>
+        <link rel="stylesheet" href="../../css/cadastroProduto.css"/>
         <title>Cadastro Produto</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,27 +14,31 @@
             <nav>
                 <ul>
                     <li><a href="../menu.html" >Inicio</a></li>
-                    <li><a href="#" >Gerenciamento</a></li>
                 </ul>
             </nav>
         </header>
         <main id="main">
-            <form action="../cadastro/produto" method="POST">
-                <div class="container">
-                    <div class="dadosPessoais">
+            <form>
+                <div class="containerPrincipal">
+                    <div class="dadosProduto">
                         <label for="nome">Nome</label>
-                        <input type="text" name="nome" id="nome" placeholder="Digite o nome do produto" />
-                        <label for="quantidade">Quantidade</label>
-                        <input type="text" name="quantidade" id="quantidade" placeholder="Digite a quantidade inicial" />
-                        <label for="precoVendaUni">Preço de compra (unidade)</label>
-                        <input type="text" name="precoVendaUni" id="precoVendaUni" placeholder="Digite o preco da unidade" />
+                        <input type="text"  id="nome" placeholder="Digite o nome do produto" />
                         <label for="marca">Marca</label>
-                        <input type="text" name="marca" id="marca" placeholder="Digite a marca" />
+                        <input type="text" id="marca" placeholder="Digite a marca" />
+                        <label for="fornecedor">Fornecedor</label>
+                        <input type="text" id="fornecedor" placeholder="Digite o nome do fornecedor" />
+                        <label for="quantidade">Quantidade</label>
+                        <input type="text" id="quantidade" placeholder="Digite a quantidade em estoque" />
+                        <label for="precoVendaUni">Preço de venda (unidade)</label>
+                        <input type="text" id="precoVendaUni" placeholder="Digite o preco da unidade" />
                     </div>
                     <div class="btn">
-                        <button type="submit">Cadastrar</button>
+                        <button id="cadastrar">Cadastrar</button>
+                        <button id="novoEstoque">Novo estoque</button>
                     </div>
                 </div>
+
+
             </form>
         </main>
     </body>

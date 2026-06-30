@@ -50,41 +50,52 @@ header {
 }
 
 .secao-cadastro-on {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    background-color: aliceblue;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute; /* como eu tinha colocado o relative no container, então ele ficou em relação ao container*/
+    top: 0px; /* Surge logo abaixo do avatar */
+    right: 25px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1); 
+
     opacity: 1;
     visibility: visible;
     transform: translateY(0px);
 }
 
-.secao-cadastro-off ul{
+.grupo-cadastro ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.secao-cadastro-off ul li{
+.grupo-cadastro ul li{
     padding: 5px;
 }
 
-.secao-cadastro-off ul li a{
+.grupo-cadastro ul li a{
     text-decoration: none; /* Remove o sublinhado */
     transition: all 0.3s ease; /* Efeito suave ao passar o mouse */
 }
 
-.secao-cadastro-off ul li a:visited {
+.grupo-cadastro ul li a:visited {
   color: #004499;
 }
 
-.secao-cadastro-off ul li a:hover {
+.grupo-cadastro ul li a:hover {
   color: #0099ff;
   text-decoration: underline;
 }
 
-.secao-cadastro-off ul li a:active {
+.grupo-cadastro ul li a:active {
   color: #002244;
 }
 
 /* Quando o usuário navega pelo teclado (ex: tecla Tab) */
-.secao-cadastro-off ul li a:focus {
+.grupo-cadastro ul li a:focus {
   outline: 2px dashed #0099ff;
 }
 
@@ -122,6 +133,12 @@ header {
     transform: scale(1.05);
 }
 
+.user-profile-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 /* O MENU DROPDOWN */
 .profile-off {
     display: flex;
@@ -144,16 +161,23 @@ header {
 }
 
 .profile-on {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px; 
+    background-color: #f0f8ff; 
+    padding: 8px; /* Reduzido para controlar o espaçamento interno via itens */
+    border-radius: 8px; 
+    position: absolute; 
+    top: calc(100% + 10px); 
+    right: 0;  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    z-index: 10; 
+
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.profile-off ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
 
 /* ESTILIZAÇÃO DOS LINKS E BOTÕES INTERNOS DO MENU */
 .btn-invPerfil {
