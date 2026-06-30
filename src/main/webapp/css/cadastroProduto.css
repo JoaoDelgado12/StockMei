@@ -41,16 +41,41 @@ nav a:hover{
     justify-content: center;
 }
 
+.container{
+    display: flex;
+    align-items: flex-start; /* Alinha o topo dos dois containers */
+    justify-content: center;
+    gap: 30px; 
+    width: 100%;
+    max-width: 1100px;
+}
+
 .containerPrincipal{
     background-color: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px var(--shadow-default);
-    width: 100%;
+    width: 500px;
     max-width: 1100px;
     display: flex;
     gap: 30px;
     flex-wrap: wrap; /* quebra minima de espaço de tela */
+}
+
+.containerEstoque{
+    background-color: rgb(238, 236, 127);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--shadow-default);
+    width: 300px;
+    display: flex;
+    flex-direction: column; /* Organiza os inputs um abaixo do outro igual ao principal */
+    gap: 10px;
+    display: none;
+}
+
+.containerEstoqueON{
+    display: flex;
 }
 
 .dadosProduto{
@@ -61,28 +86,61 @@ nav a:hover{
     gap: 10px;
 }
 
+.containerMarca{
+    position: relative;
+}
+
+/* Janela flutuante em formato de tópicos */
+.containerMarca .topicos-lista {
+    position: absolute;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    padding: 0;
+    list-style: none; /* Remove as bolinhas padrão da lista */
+    z-index: 100;
+    overflow: hidden;
+}
+/* Cada tópico individual */
+.containerMarca .topico-item {
+    padding: 12px 15px;
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+}
+/* Remove a linha divisória do último tópico */
+.containerMarca .topico-item:last-child {
+    border-bottom: none;
+}
+/* Efeito visual ao passar o mouse ou usar o teclado */
+.containerMarca .topico-item:hover {
+    background-color: #f1f7ff;
+    color: #007bff;
+}
+
+
 label{
     font-size: 14px;
     margin-top: 5px;
 }
 
-input,
-select{
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid var(--gray-medium);
+/* Estilo do campo de texto */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
     outline: none;
-    transition: 0.2;
+    transition: border-color 0.2s;
 }
-
-input:focus,
-select:focus{
-    border-color: var(--primary-medium);
-}
-
-.dadosProduto p{
-    margin-top: 10px;
-    font-weight: bold;
+input[type="text"]:focus {
+    border-color: #007bff;
 }
 
 .btn{
@@ -110,7 +168,7 @@ select:focus{
     background-color: var(--success-hover);
 }
 
-.btn #novoEstoque{
+.btn #addEstoque{
     padding: 7px 20px;
     margin-left: auto;
     background-color: var(--primary-corfundolight);
@@ -122,6 +180,6 @@ select:focus{
     transition: 0.2s;
 }
 
-.btn #novoEstoque:hover{
+.btn #addEstoque:hover{
     background-color: var(--primary-corfundodark);
 }

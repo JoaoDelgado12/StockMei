@@ -11,9 +11,13 @@ nb-configuration.xml
 # Environment
 .env
 
+#Maven
+.mvn
+mvnw*
+
 # Opcional
-/src/main/webapp/db
+/src/main/webapp/db/!1_init.sql
 anotacoes
-PreReadMe
+PreReadMe*
 
 
