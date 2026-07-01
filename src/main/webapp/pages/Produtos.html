@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque - Modelo Cards</title>
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/color.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/padraoPagina.css">
+    <link rel="stylesheet" type="text/css" href="../css/Produto.css">
+</head>
+<body>
+    <header> 
+        <div class="grupo-mais">
+            <div class="secao-mais-off">
+                <ul>
+                    <li> <a href="./pagesCadastro/cadastroProduto.html">Cadastrar Produto</a> </li>
+                    <li> <a href="./pagesCadastro/cadastroUsuario.html">Cadastrar Usuario</a> </li>
+                    <li> <a href="./vendaProduto.html">Venda de produto</a> </li>
+                </ul>
+            </div>
+
+            <!-- Modo cadastro off-->
+            <button class="header-mais">
+                <img src="../IMG/plus.svg" alt="botão de cadastrar produto"> 
+            </button>
+        </div>
+
+        <div class="user-profile-container">
+            <!-- Perfil -->
+            <button class="user-profile">
+                <img src="../IMG/userDefault.svg" alt="Foto de perfil do usuário">
+            </button>
+
+            <!-- Menu -->
+            <div class="profile-off">
+                <ul>
+                    <li> <a class="btn-invPerfil">Perfil</a> </li>
+                    <li> <form action="../logout" method="POST">
+                            <button type="submit" class="btn-invPerfil">Sair do Sistema</button>
+                        </form> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Visualização de Estoque</h2>
+
+            <div class="legenda-grid">
+                <div class="legenda-item">
+                    <div class="indicador-cor" style="background-color: var(--red-aviso);"></div>
+                    <span>Reposição Imediata (< Mínimo)</span>
+                </div>
+                <div class="legenda-item">
+                    <div class="indicador-cor" style="background-color: var(--color-warning);"></div>
+                    <span>Estoque Limítrofe (Até +5)</span>
+                </div>
+                <div class="legenda-item">
+                    <div class="indicador-cor" style="background-color: #cbd5e1;"></div>
+                    <span>Estoque Seguro</span>
+                </div>
+            </div>
+
+            <div class="cards-grid" id="painelCards">
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="../js/Produto.js"> </script> 
+    <script src="../js/padraoPagina.js"> </script> 
+    <script src="../js/logout.js"></script>
+</body>
+</html>

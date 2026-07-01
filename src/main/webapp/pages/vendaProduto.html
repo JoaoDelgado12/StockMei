@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda de Produtos</title>
+    <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/padraoPagina.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/color.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/vendaProduto.css">
+    
+</head>
+<body>
+    <header> 
+        <div class="grupo-mais">
+            <div class="secao-mais-off">
+                <ul>
+                    <li> <a href="./pagesCadastro/cadastroProduto.html">Cadastrar Produto</a> </li>
+                    <li> <a href="./pagesCadastro/cadastroUsuario.html">Cadastrar Usuario</a> </li>
+                    <li> <a href="./vendaProduto.html">Venda de produto</a> </li>
+                </ul>
+            </div>
+
+            <!-- Modo cadastro off-->
+            <button class="header-mais">
+                <img src="../IMG/plus.svg" alt="botão de cadastrar produto"> 
+            </button>
+        </div>
+
+        <div class="user-profile-container">
+            <!-- Perfil -->
+            <button class="user-profile">
+                <img src="../IMG/userDefault.svg" alt="Foto de perfil do usuário">
+            </button>
+
+            <!-- Menu -->
+            <div class="profile-off">
+                <ul>
+                    <li> <a class="btn-invPerfil">Perfil</a> </li>
+                        <li> <form action="../logout" method="POST">
+                            <button type="submit" class="btn-invPerfil">Sair do Sistema</button>
+                            </form> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <form action="/sua-api-de-venda" method="POST" id="formVenda" class="main-container">
+            
+            <div class="panel">
+                <h2>Venda de Produto</h2>
+                
+                <div class="form-group">
+                    <label for="nome">Nome do Produto</label>
+                    <input type="text" id="nome" name="nome" placeholder="Ex: Monitor Gamer 24'" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="precoUnitario">Preço Unitário (R$)</label>
+                    <input type="number" id="precoUnitario" name="precoUnitario" step="0.01" min="0" placeholder="0.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantidade">Quantidade</label>
+                    <input type="number" id="quantidade" name="quantidade" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="desconto">Desconto Total (R$)</label>
+                    <input type="number" id="desconto" name="desconto" step="0.01" min="0" value="0.00">
+                </div>
+
+                <div class="total-display">
+                    Total do Item: R$ <span id="lblTotalItem">0.00</span>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" id="btnAdicionar" class="btn-add">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+
+            <div class="panel" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h2>Carrinho de Compras</h2>
+                    <ul class="carrinho-lista" id="carrinhoLista">
+                        <div class="carrinho-vazio" id="carrinhoVazio">Nenhum produto adicionado ainda.</div>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="total-geral">
+                        Total Geral: R$ <span id="lblTotalGeral">0.00</span>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="submit" class="btn-submit">Finalizar Compra</button>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="dadosCarrinhoHidden" name="itensCarrinho">
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="../js/padraoPagina.js"> </script> 
+    <script src="../js/logout.js"></script>
+    <script src="../js/vendaProduto.js"> </script> 
+</body>
+</html>

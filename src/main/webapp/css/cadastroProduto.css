@@ -86,12 +86,12 @@ nav a:hover{
     gap: 10px;
 }
 
-.containerMarca{
+.containerAutoCompletar{
     position: relative;
 }
 
 /* Janela flutuante em formato de tópicos */
-.containerMarca .topicos-lista {
+.containerAutoCompletar .topicos-lista {
     position: absolute;
     width: 100%;
     background-color: #ffffff;
@@ -104,7 +104,7 @@ nav a:hover{
     overflow: hidden;
 }
 /* Cada tópico individual */
-.containerMarca .topico-item {
+.containerAutoCompletar .topico-item {
     padding: 12px 15px;
     font-size: 15px;
     color: #333;
@@ -113,11 +113,11 @@ nav a:hover{
     transition: background-color 0.2s;
 }
 /* Remove a linha divisória do último tópico */
-.containerMarca .topico-item:last-child {
+.containerAutoCompletar .topico-item:last-child {
     border-bottom: none;
 }
 /* Efeito visual ao passar o mouse ou usar o teclado */
-.containerMarca .topico-item:hover {
+.containerAutoCompletar .topico-item:hover {
     background-color: #f1f7ff;
     color: #007bff;
 }

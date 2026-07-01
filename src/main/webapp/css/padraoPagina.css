@@ -19,18 +19,21 @@ header {
     z-index: 1000; /* para manter ele sempre em cima */
 }
 
-.grupo-cadastro{
+.grupo-mais{
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-.header-cadastro{
+.header-mais{
     background-size: cover;
     border: none;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
 }
 
-.secao-cadastro-off{
+.secao-mais-off{
     display: flex;
     flex-direction: column;
     border: none;
@@ -47,9 +50,11 @@ header {
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+
+    
 }
 
-.secao-cadastro-on {
+.secao-mais-on {
     display: flex;
     flex-direction: column;
     border: none;
@@ -64,38 +69,39 @@ header {
     opacity: 1;
     visibility: visible;
     transform: translateY(0px);
+    transform: translateX(-10px);
 }
 
-.grupo-cadastro ul{
+.grupo-mais ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.grupo-cadastro ul li{
+.grupo-mais ul li{
     padding: 5px;
 }
 
-.grupo-cadastro ul li a{
+.grupo-mais ul li a{
     text-decoration: none; /* Remove o sublinhado */
     transition: all 0.3s ease; /* Efeito suave ao passar o mouse */
 }
 
-.grupo-cadastro ul li a:visited {
+.grupo-mais ul li a:visited {
   color: #004499;
 }
 
-.grupo-cadastro ul li a:hover {
+.grupo-mais ul li a:hover {
   color: #0099ff;
   text-decoration: underline;
 }
 
-.grupo-cadastro ul li a:active {
+.grupo-mais ul li a:active {
   color: #002244;
 }
 
 /* Quando o usuário navega pelo teclado (ex: tecla Tab) */
-.grupo-cadastro ul li a:focus {
+.grupo-mais ul li a:focus {
   outline: 2px dashed #0099ff;
 }
 

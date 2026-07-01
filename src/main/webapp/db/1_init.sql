@@ -56,16 +56,11 @@ CREATE TABLE IF NOT EXISTS  dadosUsuario(
   telefone VARCHAR(13)
 );
 
-CREATE TABLE IF NOT EXISTS EmpresaNome(
-	empresaNome VARCHAR(120) PRIMARY KEY
-);
+
 
 CREATE TABLE IF NOT EXISTS Fornecedor(
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	nome VARCHAR(120),
-	telefone VARCHAR(13),
-	empresaNome VARCHAR(120),
-	CONSTRAINT fk_empresaNome_fornecedor FOREIGN KEY (empresaNome) REFERENCES EmpresaNome(empresaNome) on update cascade on delete restrict
+	nome VARCHAR(120) PRIMARY KEY,
+	telefone VARCHAR(13)
 );
 
 CREATE TABLE IF NOT EXISTS Marca(
@@ -81,12 +76,14 @@ CREATE TABLE IF NOT EXISTS DataPrecoVenda(
 CREATE TABLE IF NOT EXISTS Produto(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(120),
-	quantidade INT,
-	precoVendaUni DECIMAL(10,2),
 	marca VARCHAR(120),
 	CONSTRAINT fk_marca_Produto FOREIGN KEY (marca) REFERENCES Marca(marca) on update cascade on delete restrict,
-	fornecedor INT,
-	CONSTRAINT fk_fornecedor_Produto FOREIGN KEY (fornecedor) REFERENCES Fornecedor(id) on update cascade
+	fornecedor VARCHAR(120),
+	CONSTRAINT fk_fornecedor_Produto FOREIGN KEY (fornecedor) REFERENCES Fornecedor(id) on update cascade,
+	precoVendaUni DECIMAL(10,2),
+	quantidade INT,
+	quantidadeMin INT,
+	localArmazenamento VARCHAR(120)
 );
 
 CREATE TABLE IF NOT EXISTS HistEstoque(

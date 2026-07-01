@@ -1,15 +1,36 @@
-document.addEventListener('DOMContentLoaded', async function(){
-    const url = `http://localhost:8080/api/consulta/marca`
+document.addEventListener('DOMContentLoaded', function(){
+    const vetorConsulta = ["marca","fornecedor"];
+	for(const consulta of vetorConsulta){
+		autoCompletar(consulta);
+	}
+	
+	
+	
+	const bxestoque = document.querySelector(".containerEstoque");
+	const btnestoque = document.getElementById("addEstoque");
+
+	btnestoque.addEventListener('click', function(){
+	    bxestoque.classList.toggle("containerEstoqueON");
+	} );
+})
+
+
+async function autoCompletar(consulta){
+	const url = `http://localhost:8080/api/consulta/${consulta}` 
+	
 
     const resp = await  fetch(url);
     const dadosMarca = await resp.json();
 
-    const inputMarca = document.getElementById("marca");
-    const janelaAuto = document.getElementById("janelaAuto");
+    const inputMarca = document.getElementById(consulta);
+    const janelaAuto = document.getElementById("janelaAuto"+consulta);
 
     inputMarca.addEventListener('input', function(){
-        if(this.value.toLowerCase().length() === 0) return;
-        this.innerHTML = '';
+        if(this.value.toLowerCase().length === 0){
+			 janelaAuto.innerHTML = ''; 
+			 return;
+		 }
+        janelaAuto.innerHTML = '';
 
         const tresFiltrados = dadosMarca.filter( item => item.toLowerCase().includes(this.value.toLowerCase())).slice(0,3);
 
@@ -33,15 +54,7 @@ document.addEventListener('DOMContentLoaded', async function(){
             janelaAuto.innerHTML = '';
         }
     })
-})
-
-
-const bxestoque = document.querySelector(".containerEstoque");
-const btnestoque = document.getElementById("addEstoque");
-
-btnestoque.addEventListener('click', function(){
-    bxestoque.classList.toggle("containerEstoqueON");
-} );
+}
 
 
 

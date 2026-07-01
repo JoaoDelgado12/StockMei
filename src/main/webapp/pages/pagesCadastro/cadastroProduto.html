@@ -18,41 +18,48 @@
             </nav>
         </header>
         <main id="main">
-            <div class="container">
-                <div class="containerPrincipal">
-                    <div class="dadosProduto">
-                        <label for="nome">Nome</label>
-                        <input type="text"  id="nome" placeholder="Nome do produto" />
-                        <div class="containerMarca">
-                            <label for="marca">Marca</label>
-                            <input type="text" id="marca" placeholder="Nome da marca" />
-                            <ul id="janelaAuto"></ul>
-                        </div>
-                        <label for="fornecedor">Fornecedor</label>
-                        <input type="text" id="fornecedor" placeholder="Nome do fornecedor" />
-                        <label for="quantidade">Quantidade</label>
-                        <input type="text" id="quantidade" placeholder="Quantidade atual do estoque" />
-                        <label for="quantidadeMin">Quantidade mínima</label>
-                        <input type="text" id="quantidadeMin" placeholder="Quantidade para reposição" />
-                        <label for="precoVendaUni">Preço de venda (unidade)</label>
-                        <input type="text" id="precoVendaUni" placeholder="Preco de venda do produto" />
-                        <label for="localArmazenamento">Local de armazenamento</label>
-                        <input type="text" id="localArmazenamento" placeholder="Local de armazenamento" />
-                    </div>
-                    <div class="btn">
-                        <button id="cadastrar">Cadastrar</button>
-                        <button id="addEstoque">add estoque</button>
-                    </div>
-                </div>
-                <div class="containerEstoque">
-                    <label for="precoCompraUni">Preco de Compra (unidade) </label>
-                    <input type="text" id="precoCompraUni" placeholder="Preço da compra do produto"/>
-                    <label for="quantidade"> Quantidade </label>
-                    <input type="text" id="quantidade" placeholder="Quantidade da compra"/>
-                    <label for="desconto"> Desconto </label>
-                    <input type="text" id="number" placeholder="Desconto da compra"/>
-                </div>
-            </div>
+        	<form action="../../api/cadastro/produto" method="post">
+	            <div class="container">
+	                <div class="containerPrincipal">
+	                    <div class="dadosProduto">
+	                        <label for="nome">Nome</label>
+	                        <input type="text"  name="nome" id="nome" placeholder="Nome do produto" />
+	                        <div class="containerAutoCompletar">
+	                            <label for="marca">Marca</label>
+	                            <input type="text" name="marca" id="marca" placeholder="Nome da marca" />
+	                            <ul class="topicos-lista" id="janelaAutomarca"></ul>
+	                        </div>
+	                        <div class="containerAutoCompletar">
+	                            <label for="fornecedor">Fornecedor</label>
+	                            <input type="text" name="fornecedor" id="fornecedor" placeholder="Nome do fornecedor" />
+	                            <ul class="topicos-lista" id="janelaAutofornecedor"></ul>
+	                        </div>
+	                        <label for="quantidade">Quantidade</label>
+	                        <input type="text" name="quantidadeEstoque" id="quantidade" placeholder="Quantidade atual do estoque" />
+	                        <label for="quantidadeMin">Quantidade mínima</label>
+	                        <input type="text" name="quantidadeMinima" id="quantidadeMin" placeholder="Quantidade para reposição" />
+	                        <label for="precoVendaUni">Preço de venda (unidade)</label>
+	                        <input type="text" name="precoVendaUnidade" id="precoVendaUni" placeholder="Preco de venda do produto" />
+	                        <label for="localArmazenamento">Local de armazenamento</label>
+	                        <input type="text" name="localArmazenamento" id="localArmazenamento" placeholder="Local de armazenamento" />
+	                    </div>
+	                    <div class="btn">
+	                        <button id="cadastrar">Cadastrar</button>
+	                        <button id="addEstoque" type="button">add estoque</button>
+	                    </div>
+	                </div>
+	                <div class="containerEstoque">
+	                    <label for="precoCompraUni">Preco de Compra (unidade) </label>
+	                    <input type="text" name="precoCompraUnidade" id="precoCompraUni" placeholder="Preço da compra do produto"/>
+	                    <label for="quantidade"> Quantidade </label>
+	                    <input type="text" name="quantidadeCompra" id="quantidadeCompra" placeholder="Quantidade da compra"/>
+	                    <label for="precoCompraTotal"> Preco total da Compra </label>
+	                    <input type="text" name="precoCompraTotal" id="precoCompraTotal" placeholder="Preco total da compra"/>
+	                    <label for="dtaCompra">Data de compra</label>
+	                    <input type="date" name="dtaCompra" id="dtaCompra" />
+	                </div>
+	            </div>
+            </form>
         </main>
         <script src="../../js/cadastroProduto.js"></script>
     </body>

@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
-    const btn_cadastro = document.querySelector(".header-cadastro");
-    const submenu_cadastro = document.querySelector(".secao-cadastro-off");
+    const btn_cadastro = document.querySelector(".header-mais");
+    const submenu_cadastro = document.querySelector(".secao-mais-off");
 
     btn_cadastro.addEventListener("click", function(){
-        if(submenu_cadastro.classList.contains("secao-cadastro-on")){
-            submenu_cadastro.classList.replace("secao-cadastro-on", "secao-cadastro-off")
+        if(submenu_cadastro.classList.contains("secao-mais-on")){
+            submenu_cadastro.classList.replace("secao-mais-on", "secao-mais-off")
         }else{
-        submenu_cadastro.classList.replace("secao-cadastro-off", "secao-cadastro-on")
+        submenu_cadastro.classList.replace("secao-mais-off", "secao-mais-on")
         }
     });
 
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
         if(!btn_cadastro.contains(e.target) && !submenu_cadastro.contains(e.target)){
-            submenu_cadastro.classList.replace("secao-cadastro-on","secao-cadastro-off")
+            submenu_cadastro.classList.replace("secao-mais-on","secao-mais-off")
         }
     } )
 });

@@ -1,0 +1,191 @@
+main{
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.panel {
+    background: var(--surface);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border: 1px solid var(--border);
+}
+
+h2 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--primary);
+}
+
+.total-display {
+    background-color: #eff6ff;
+    border: 1px dashed var(--primary);
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-top: 25px;
+    text-align: center;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+main button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-add {
+    background-color: var(--primary-corfundolight);
+    color: white;
+}
+
+.btn-add:hover {
+    background-color: var(--primary-corfundodark);
+}
+
+.btn-submit {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: var(--success-hover);
+}
+
+/* --- Estilos do Carrinho --- */
+.carrinho-lista {
+    list-style: none;
+    max-height: 350px;
+    overflow-y: auto;
+    margin-bottom: 25px;
+}
+
+.carrinho-item {
+    background: #f1f5f9;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--primary);
+    /* Animação de entrada */
+    opacity: 0;
+    transform: translateY(10px);
+    animation: surgir 0.3s forwards ease-out;
+}
+
+@keyframes surgir {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.item-info span {
+    display: block;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.item-preco {
+    font-weight: bold;
+}
+
+.carrinho-vazio {
+    color: #94a3b8;
+    text-align: center;
+    padding: 40px 0;
+    font-style: italic;
+}
+
+/* Container para alinhar o preço e o botão de remover lado a lado */
+.container-preco-remover {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Estilo inicial da div de remover: Vermelho opaco (suave) */
+.btn-remover {
+    background-color: #fee2e2; /* Fundo vermelho bem claro */
+    color: #ef4444;            /* Texto/Ícone vermelho fosco */
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease; /* Transição suave para o efeito de hover */
+    user-select: none;
+}
+
+/* Ao colocar o mouse em cima: Vermelho vivo e texto branco */
+.btn-remover:hover {
+    background-color: #ef4444; /* Vermelho vivo */
+    color: #ffffff;            /* Texto branco */
+    transform: scale(1.05);    /* Leve aumento para dar feedback físico */
+}
+
+.total-geral {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: right;
+    border-top: 2px dashed var(--border);
+    padding-top: 15px;
+}
